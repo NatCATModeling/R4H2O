@@ -221,7 +221,7 @@ B) `(2/3) * Cd * sqrt(2 * 9.81) * b * ((50:500)/1000)^(3/2)`
 c) Repeat for each value of `h`$: `(2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)`
  
 You can find the answers in the last chapter of the syllabus. The code is available in the `channel.R` script in the `basicr` folder.
-{/quiz}
+{/exercise}
 
 ## RStudio scripts and projects
 The console provides a running record of the actions taken by R. While this is great, using the console makes it hard to reconstruct what steps you have taken to get to your result. To create reproducible code, you need to write your code in a file. 
