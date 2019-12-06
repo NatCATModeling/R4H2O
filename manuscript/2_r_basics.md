@@ -135,9 +135,26 @@ The variable `a` is assigned a vector of eight numbers using the `c()` function.
 
 Q> Apply the functions in the previous two tables to the following vector and inspect the result: `c(12, 3, -23, 45, 2, 99, 1, 0)`.
 
+These are only some of the mathematical functions available in R. When you enter these, make sure you understand the output.
+
+{format: r, line-numbers: false}
+```R
+a <- c(12, 3, -23, 45, 2, 99, 1, 0)
+
+abs(a)
+exp(a)
+factorial(a)
+log(a, base = 10)
+sqrt(a)
+sum(a)
+prod(a)
+min(a)
+max(a)
+```
+
 You should notice a few things when you start typing:
 * When you hit enter, the result of any expressions without the assignment symbol (`<-`) is shown in the console.
-* When you type `plot()`,  `mean()`, or other functions, RStudio gives you suggestions on how to continue.
+* When you type `plot()`, `mean()`, or other functions, RStudio gives you suggestions on how to continue.
 * When typing brackets or quotation marks, RStudio includes the closing bracket or quotation mark.
 * The variables you declared (`x`, `y` and `a`) are shown in the Environment window.
 * The plot appears in a tab of the bottom-right window.
@@ -146,7 +163,7 @@ Now retype the plot command, but only type the first two letters and then hit th
 
 Another useful function of the console is to use the arrow keys to repeat or modify previous commands.
 
-### Quiz 1
+## Quiz 1: Calculating channel flows
 Now it is your turn to play with the basic syntax of R and functionality of RStudio. The answers are at the end of this chapter.
 
 You need to measure the flow in a rural channel with a rectangular weir. You take three measurements: 125, 100, and 50mm. The width of the weir is 300mm. To calculate the flow, use a simplified version of the Kindsvater-Carter rectangular weir equation ([ISO 1438: 2017](https://www.iso.org/standard/66463.html)):
@@ -166,7 +183,9 @@ The value for `C_d`$ is approximated because it depends on the dimensions of the
 {width: 100%}
 ![Example of a channel with a rectangular weir (Photo: Coliban Water).](resources/session2/weirplate.jpg)
 
-{quiz, id: channel, attempts: 10}
+With this information, enter the first quiz and answer three questions.
+
+{exercise, id: channel, attempts: 10}
 You are processing measurements from a channel operator and need to calculate various flow rates. You can use the Kindsvater-Carter formula: 
 
 ```$
@@ -180,7 +199,6 @@ The gravity constant `g = 9.81 m/s^2`$.
 The width of the weir `b = 0.6m`$.
 
 One megalitre is one million litres (1000 cubic metres). This is a unit of volume measurement commonly used in Australia.
-
 
 Answer the quiz questions below with this information. Remember to use the arrow button to retrieve previous commands. 
 
@@ -202,7 +220,7 @@ a) `(2/3) * Cd * sqrt(2 * 9.81) * b * (0.05:0.50)^(3/2)`
 B) `(2/3) * Cd * sqrt(2 * 9.81) * b * ((50:500)/1000)^(3/2)`
 c) Repeat for each value of `h`$: `(2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)`
  
-You can find the answers are in the `channel.R` script in the `basicr` folder.
+You can find the answers in the last chapter of the syllabus. The code is available in the `channel.R` script in the `basicr` folder.
 {/quiz}
 
 ## RStudio scripts and projects
@@ -235,23 +253,51 @@ X> Open the help file for the `plot()` function. How do you plot a function with
 
 X> Plot the flow values calculated in the quiz and plot them.
 
-## Answers
-These are the answers to the questions in this chapter.
+## Libraries in R
+One of the most powerful features of the R language is that developers can write extensions, the so-called libraries. R has a large community of users who develop code and make it freely available to other users in the form of packages.
 
-### Apply functions to the vector `a`
-These are only some of the mathematical functions available in R. When you enter these, make sure you understand the output.
+Thousands of specialised packages undertake a vast range of specialised tasks. You can, for example, use R as a GIS and analyse spatial data or implement machine learning. Other packages help you to access data from various sources, such as SQL databases.
 
-{format: r, line-numbers: false}
-```R
-a <- c(12, 3, -23, 45, 2, 99, 1, 0)
+The majority of R packages are available on [CRAN](https://cran.r-project.org/), the *Comprehensive R Archive Network*. You can install packages within RStudio using the *Tools*>*Install Packages* menu option.
 
-abs(a)
-exp(a)
-factorial(a)
-log(a, base = 10)
-sqrt(a)
-sum(a)
-prod(a)
-min(a)
-max(a)
-```
+### Libraries for water management
+The CRAN library contains many packages with functions to analyse water. This workshop does not cover any of these packages. The list below gives some examples:
+
+* [baytrends](https://cran.r-project.org/web/packages/baytrends/index.html): Long Term Water Quality Trend Analysis.
+* [biotic](https://cran.r-project.org/web/packages/biotic/index.html): Calculation of Freshwater Biotic Indices.
+* [CityWaterBalance](https://cran.r-project.org/web/packages/CityWaterBalance/index.html): Track Flows of Water Through an Urban System.
+* [driftR](https://cran.r-project.org/web/packages/driftR/index.html): Drift Correcting Water Quality Data.
+* [EmiStatR](https://cran.r-project.org/web/packages/EmiStatR/index.html): Emissions and Statistics in R for Wastewater and Pollutants in Combined Sewer Systems.
+
+### The Tidyverse
+One of the most popular series of packages is the [Tidyverse](https://www.tidyverse.org/), developed by R guru Hadley Wickham and many others.
+
+The Tidyverse packages provide additional functionality to extract, transform, visualise and analyse data. The features offered by these packages are easier to use and understand than the base R code.
+
+This case study discusses cleaning and visualising customer data. The next case study uses Tidyverse to analyse smart metering data.
+
+You can install packages in R with the `install.packages()` function. Within RStudio you can install packages in the *Tools* menu. Before you can start using a library, you need to initiate it with the `library()` command.
+
+T> Install the Tidyverse collection of packages using `install.packages(tidyverse)`. When completed, initiate it with `library(tidyverse)`.
+
+Installing the complete Tidyverse can take a little while, depending on your computer and the operating system. If you have problems installing, make sure that you are connected to the internet.
+
+When you load the Tidyverse, the following packages are loaded by default:
+* [dplyr](https://dplyr.tidyverse.org/): Data manipulation.
+* [ggplot2](https://ggplot2.tidyverse.org/): Visualise data.
+* [forcats](https://forcats.tidyverse.org/): Working with factor variables.
+* [purrr](https://purrr.tidyverse.org/): Functional programming. 
+* [readr](https://readr.tidyverse.org/): Read and write CSV files.
+* [stringr](https://stringr.tidyverse.org/): Manipulate text.
+* [tibble](https://tibble.tidyverse.org/): Replacement for data frames.
+* [tidyr](https://tidyr.tidyverse.org/): Data transformation.
+
+Some data scientists prefer not to load the complete set of packages and choose to load each one separately to spare computer memory. This course does not discuss the *purrr*, *stringr* or *forcats* libraries. Many other packages are available that follow the principles of the Tidyverse. 
+
+Doing 'tidy' data science has a strong following. Tidy data science relates to cleaning data in a specific way and writing code that is easy to read.
+
+The startup message also shows some warnings about conflicts with some of the base functionality, which we can ignore for now.
+
+The Tidyverse developers frequently update the software. You can see if updates are available, and optionally install them, by running `tidyverse_update()`. You can also upgrade packages in the *Tools > Check for Package Updates* in RStudio.
+
+The [next chapter](#casestudy1) details the first case study, which deals with a water quality problem. The remainder of the course uses the Tidyverse functionality to read, clean, analyse and present data.

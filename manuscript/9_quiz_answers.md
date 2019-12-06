@@ -1,5 +1,4 @@
-
-# Quiz Answers
+# Quiz Answers {#answers}
 ## Quiz 2: Channel Flows
 ### Question 1: What is the flow in the channel in megalitres per day when the height `h = 100mm`$?
 We need to covert the level from millimetres to metres and enter this into the formula. The result will be in m^3/s and needs to be converted to megalitres per day.

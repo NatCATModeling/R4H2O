@@ -5,19 +5,19 @@ The water network is divided into four zones, each of which has a set of sample 
 
 The laboratory service provider regularly samples these taps and tests the water for a range of parameters, including turbidity. All turbidity measurements are recorded for a specific sample point at a certain date. The data set is already cleaned and is ready for analysis.
 
+## Turbidity
+Turbidity is a measurement of the cloudiness of the water. In drinking water, the higher the turbidity level, the higher the risk that consumers develop gastrointestinal diseases. Particles in the water scatter light, which is used to measure turbidity with a nephelometer (from the Greek *nephéla*, "cloud"). Turbidity is expressed in dimensionless Nephelometric Turbidity Units (NTU). The video below gives a detailed overview of how to measure turbidity in liquids.
+
+{type: video, align: middle, poster: "https://www.youtube.com/watch?v=qz8xHQJw6qY/mqdefault.jpg"}
+![Determination of Turbidity of water: Calibration and Measurement](https://www.youtube.com/watch?v=qz8xHQJw6qY)
+    
+## Problem Statement
 The states of Australia each have their own water quality regulations. The state regulations refer to the federal [Australian Drinking Water Quality Guidelines](https://www.nhmrc.gov.au/about-us/publications/australian-drinking-water-guidelines).
 
 The Victorian regulations for water quality, the [Safe Drinking Water Regulations](https://www2.health.vic.gov.au/public-health/water/drinking-water-in-victoria/drinking-water-legislation) 2015, specify that "the 95^th^ percentile of results for samples in any 12 months must be less than or equal to 5.0 Nephelometric Turbidity Units".
 
 In a separate [guidance document](https://www2.health.vic.gov.au/Api/downloadmedia/%7BA1F6D255-D5C7-4B7E-AAE5-8B7451EDE81A%7D), the Victorian regulator also specifies that the percentile for turbidity should be calculated with the 'Weibull Method'.
 
-## Turbidity
-Turbidity is a measurement of the cloudiness of the water. In drinking water, the higher the turbidity level, the higher the risk that consumers develop gastrointestinal diseases. Particles in the water scatter light, which is used to measure turbidity with a nephelometer (from the Greek nephéla, "cloud"). Turbidity is expressed in dimensionless Nephelometric Turbidity Units (NTU). The video below gives a detailed overview of how to measure turbidity in liquids.
-
-{type: video, align: middle, poster: "https://www.youtube.com/watch?v=qz8xHQJw6qY/mqdefault.jpg"}
-![Determination of Turbidity of water: Calibration and Measurement](https://www.youtube.com/watch?v=qz8xHQJw6qY)
-    
-## Problem Statement
 You are writing the annual report to the regulator about the Laanecoorie system. What was the 95^th^ percentile of turbidity for each of the water zones in the system?
 
 ## Methodology
@@ -29,7 +29,7 @@ The process to determine a percentile consists of three steps (McBride, [2005](h
 
 1. Rank the data into ascending order (`X_1, X_2, \ldots , X_n`$).
 2. Determine the rank (`r`$) of the percentile.
-3. The percentile is the value in position `r`$. When the rank is not an integer, interpolate between two values `X_{r-1}`$ and `X_{r+1}`$.
+3. The percentile is the value in position `r`$. When the rank is not an integer, linearly interpolate between two values `X_{r-1}`$ and `X_{r+1}`$.
 
 With 52 ranked weekly turbidity samples, the 95^th^ percentile is between sample 49 and 50 (`0.95 \times 52`$). However, this method is only valid for normally-distributed samples. 
 
@@ -38,70 +38,24 @@ Statisticians have defined several methods to determine percentiles. The differe
 ```$
 r_{weibull} = p(n + 1)
 ```
-For a sample of 52 turbidity tests, the percentile thus lies between ranked result number 50 and 51. This method is suitable for highly skewed samples, as is often the case with water quality data.
+For a sample of 52 turbidity tests, the percentile thus lies between ranked result number 50 and 51. This method gives a higher result than the method described above. This method is suitable for positively skewed samples, as is often the case with water quality data. We often see a lot of low values, with the occasional spikes of high values.
 
-Please note that there is no correct way to calculate percentiles. The most suitable method depends on the distribution of the population and the purpose of the analysis. In this case study, the method is prescribed by the regulator.
-
-Q> You have received 99 turbidity results from the laboratory. The first 94 are 0.1 NTU, and the last five are 5 NTU. What is the 95^th^ percentile using the Weibull method? Solve this with and without using R code.
-
-## Libraries in R
-One of the most powerful features of the R language is that developers can write extensions, the so-called libraries. R has a large community of users who develop code and make it freely available to other users in the form of packages.
-
-Thousands of specialised packages undertake a vast range of specialised tasks. You can, for example, use R as a GIS and analyse spatial data or implement machine learning. Other packages help you to access data from various sources, such as SQL databases.
-
-The majority of R packages are available on [CRAN](https://cran.r-project.org/), the *Comprehensive R Archive Network*.
-
-### Libraries for water management
-The CRAN library contains many packages with functions to analyse water. This workshop does not cover any of these packages. The list below gives some examples:
-
-* [baytrends](https://cran.r-project.org/web/packages/baytrends/index.html): Long Term Water Quality Trend Analysis.
-* [biotic](https://cran.r-project.org/web/packages/biotic/index.html): Calculation of Freshwater Biotic Indices.
-* [CityWaterBalance](https://cran.r-project.org/web/packages/CityWaterBalance/index.html): Track Flows of Water Through an Urban System.
-* [driftR](https://cran.r-project.org/web/packages/driftR/index.html): Drift Correcting Water Quality Data.
-* [EmiStatR](https://cran.r-project.org/web/packages/EmiStatR/index.html): Emissions and Statistics in R for Wastewater and Pollutants in Combined Sewer Systems.
-
-### The Tidyverse
-One of the most popular series of packages is the [Tidyverse](https://www.tidyverse.org/), developed by R guru Hadley Wickham and many others.
-
-The Tidyverse packages provide additional functionality to extract, transform, visualise and analyse data. The features offered by these packages are easier to use and understand than the base R code.
-
-This case study discusses cleaning and visualising customer data. The next case study uses Tidyverse to analyse smart metering data.
-
-You can install packages in R with the `install.packages()` function. Within RStudio you can install packages in the *Tools* menu. Before you can start using a library, you need to initiate it with the `library()` command.
-
-T> Install the Tidyverse collection of packages using `install.packages(tidyverse)`. When completed, initiate it with `library(tidyverse)`.
-
-Installing the complete Tidyverse can take a little while, depending on your computer and the operating system. If you have problems installing, make sure that you are connected to the internet.
-
-When you load the Tidyverse, the following packages are loaded by default:
-* [dplyr](https://dplyr.tidyverse.org/): Data manipulation.
-* [ggplot2](https://ggplot2.tidyverse.org/): Visualise data.
-* [forcats](https://forcats.tidyverse.org/): Working with factor variables.
-* [purrr](https://purrr.tidyverse.org/): Functional programming. 
-* [readr](https://readr.tidyverse.org/): Read and write CSV files.
-* [stringr](https://stringr.tidyverse.org/): Manipulate text.
-* [tibble](https://tibble.tidyverse.org/): Replacement for data frames.
-* [tidyr](https://tidyr.tidyverse.org/): Data transformation.
-
-Some data scientists prefer not to load the complete set of packages and choose to load each one separately to spare computer memory. This course does not discuss the *purrr*, *stringr* or *forcats* libraries. Many other packages are available that follow the principles of the Tidyverse. 
-
-Doing 'tidy' data science has a strong following. Tidy data science relates to cleaning data in a specific way and writing code that is easy to read.
-
-The startup message also shows some warnings about conflicts with some of the base functionality, which we can ignore for now.
-
-The Tidyverse developers frequently update the software. You can see if updates are available, and optionally install them, by running `tidyverse_update()`. You can also upgrade packages in the *Tools > Check for Package Updates* in RStudio.
+Please note that there is no one correct way to calculate percentiles. The most suitable method depends on the distribution of the population and the purpose of the analysis. In this case study, the method is prescribed by the regulator.
 
 ## Analysing the case study
 The sections below explain how to analyse an example data set with turbidity data for compliance with the Victorian Safe Drinking Water Regulations. The data and the code is available in the [GitHub](https://github.com/pprevos/r4h2o/casestudy1) repository. Before we determine the relevant statistics, we need to load and explore the data. 
 
-The code is available in the `casestudy1` folder in the `casestudy1.R` file. You can find the answers to the questions at the end of this module. The best way to learn the material is to type all the examples and assignments in your file, run the code and explore the results. Playing with the code and trying different variations is the best way to become familiar with the vocabulary and syntax.
+The code is available in the `casestudy1.R` file in the `casestudy1` folder. The best way to learn the material is to type all the examples and assignments in your file, run the code and explore the results. Playing with the code by trying different variations is the best way to become familiar with the vocabulary and syntax of any programming language.
 
 X> Create a new R file for this case study in RStudio.
 ### Load the data
+Before we start analysing this data, we need to load the Tidyverse collection of libraries. If we don't do this first, R will not recognise most of the functions we will be using.
+
 The data is stored in a CSV file. The `read_csv()` function reads CSV files and stores them in a data frame.
 
 {format: r, line-numbers: false}
 ```
+library(tidyverse)
 turbidity <- read_csv("casestudy1/turbidity_laanecoorie.csv")
 ```
 
@@ -128,7 +82,9 @@ cols(
 
 The turbidity data is now visible in the *Environment* tab. The turbidity variable is a data frame, which is a tabular set of data with rows (observations) and columns (variables), very much like a spreadsheet.
 
-A data frame is a variable that holds tabular data, like in a spreadsheet. The data is stored in rows and columns. Each column is a variable, which are sometimes called a data field or a parameter. Each row holds an observation or a measurement. The table below shows the start of a data frame with one row as an example.
+A data frame is a variable that holds tabular data, like in a spreadsheet. Within the Tidyverse, a data frame is called a *Tibble*. This strange term is a reference to the New Zealand accent of the main developer of this software, Hadley Wickam.
+
+The data is stored in rows and columns. Each column is a variable, which are sometimes called a data field or a parameter. Each row holds an observation or a measurement. The table below shows the start of a data frame with one row as an example.
 
 | Sample_No | Date_Sampled | Sample_Point | Zone | Result | Units |
 |-----------|--------------|--------------|------|--------|-------|
@@ -143,15 +99,17 @@ The data in this case study has the following fields:
 * `Result`: The result of the laboratory test.
 * `Units`: The units of the result (NTU).
 
-R can read many types of data. Some specialised extensions can connect R to Excel spreadsheets, SQL databases, scrape data from websites, and many other sources. The `extract_data.R` file in the case study folder shows how the turbidity data was extracted from a corporate SQL server.
+Each of these variables within a data frame is a vector. All data frames are rectangular which means that all vectors in a data frame have the same length.
+
+R can read many types of data. Some specialised extensions can connect R to Excel spreadsheets, SQL databases, scrape data from websites, and many other sources. The `extract_data.R` file in the case study folder shows how the turbidity data was extracted from a corporate SQL server, using the RODBC library.
 
 Many organisations maintain spreadsheets as their single source of truth. If a spreadsheet is indeed your only solution to store data, you should stick to some simple rules to be able to easily use it in R, or any other data science package:
 
 * Use only the top row as a header.
 * Don't use colours to indicate values.
 * Prevent using spaces in column names.
-* Don't add any calculations in the data tab.
-* Every cell below a column should be a data point or remain empty
+* Don't add any calculations in the data tab. 
+* Every cell should be a data point or remain empty.
 
 Following these guidelines, you can store your data in a clean way that simplifies analysing the results with R or any other analytical software.
 
@@ -174,6 +132,15 @@ View(turbidity)
 ```
 
 Q> Use the `nrow` and `ncol` functions to determine the size of the data frame.
+
+Answer: The `nrow()` and `ncol()` functions list the number of rows and columns for a data frame. The result is a single number. The dim function shows both results in a vector of two numbers.
+
+{format: r, line-numbers: false}
+```
+nrow(turbidity)
+ncol(turbidity)
+dim(turbidity)
+```
 
 Lastly, the `glimpse()` function provides a succinct overview of the fields in the data set, including the data types. When executing this function on the turbidity data we see:
 
@@ -224,7 +191,14 @@ Besides numerical values, you can also add formulas as indices. Please note that
 
 Q> What is the result of the last sample taken in the turbidity? Hint, use the `nrow()` function.
 
-You can also filter the data using conditions. If, for example, you like to see only the turbidity data for the Bealiba water quality zone, then you can use the `filter()` function from the dplyr package.
+Answer: To find the last element of the data frame, use the `nrow()` function within square brackets.
+
+{format: r, line-numbers: false}
+```
+turbidity$Results[nrow(turbidity)]
+```
+
+You can also filter the data using conditions. If, for example, you like to see only the turbidity data for the Bealiba water quality zone, then you can use the `filter()` function from the dplyr package in the Tidyverse.
 
 {format: r, line-numbers: false}
 ```
@@ -248,7 +222,7 @@ a <- c(TRUE, FALSE)
 a * 2
 ```
 
-The second method uses the `filter()` function, which is a bit more convenient than using square brackets. The first parameter in this function is the data frame, and the second parameter is the condition. Note that this method is tidier than the brackets method because we don't have to add the data frame name and `$` to the variables.
+The second method uses the `filter()` function, which is more convenient than using square brackets. The first parameter in this function is the data frame, and the second parameter is the condition. Note that this method is tidier than the brackets method because we don't have to add the data frame name and `$` to the variables.
 
 You can use all the common relational operators to test for conditions:
 
@@ -259,26 +233,41 @@ You can use all the common relational operators to test for conditions:
 * `x == y` equal to each other
 * `x != y` not equal to each other
 
-These relations result in a Boolean value of TRUE or FALSE, for example `1 == 2` results in `FALSE`. R also evaluates relations between character strings, using alphabetical order. In R, `"small" > "large"` results in TRUE because b comes before l.
+These relations result in a Boolean value of TRUE or FALSE, for example `1 > 2` results in `FALSE`. R also evaluates relations between character strings, using alphabetical order. In R, `"small" > "large"` results in TRUE because *b* comes before *l*.
 
 When you apply these operators to a vector, then R assess all elements in the vector. The expression `c(2, 3) > 2` results in a vector with TRUE and FALSE as elements.
 
 You can build elaborate conditionals by combining more than one condition with logical operations. Some of the most common options are:
 
-* `! x`: not
-* `x & y`: logical and
-* `x | y`: logical or
+* `! x`: not `x`$
+* `x & y`: logical and (`x`$ AND `y`$)
+* `x | y`: logical or (`x`$ OR `y`$)
 
-An example of this would be the expression `"small" > "large" & 1 == 2`, which results in FALSE because the first condition is true, but the second one is false so they are not both true.
+An example of a logical operation would be the expression `"small" > "large" & 1 == 2`, which results in FALSE because the first condition is true, but the second one is false so they are not both true.
 
 We can apply this knowledge to our case study to test subsets of the data:, `filter(turbidity, Zone == "Laanecoorie" & Result > 1)` shows the samples in the Laanecoorie zone with a result greater than 1 NTU. Note that testing for equality requires two equal signs.
 
 Q> How many turbidity results in all zones, except Bealiba, are lower than to 0.1 NTU?
 
+Answer: We subset the data for all results less than 0.5 and where the zone is not Bealiba. The nrow function counts the results.
+
+{format: r, line-numbers: false}
+```
+nrow(subset(turbidity, Results < 0.5 & Zone != "Bealiba"))
+```
+
 ### Analyse the data
-While a plot provides a quick overview of the data, we need to numerically analyse the results to find the values to report to the regulator. R has extensive functionality to analyse data. We already saw the `mean()` function that calculates the arithmetic mean of a vector.
+We need to numerically analyse the results to find the values to report to the regulator. R has extensive functionality to analyse data. We already saw the `mean()` function that calculates the arithmetic mean of a vector.
 
 Q> What is the mean turbidity value for the samples in Bealiba?
+
+Answer: Filter all results where the zone variable is Bealiba and calculate the mean of the `Results` variable.
+
+{format: r, line-numbers: false} 
+```
+turbidity_bealiba <- filter(turbidity, Zone == "Bealiba")
+mean(turbidity_bealiba$Result)
+```
 
 Another important function is `summary()` which shows six basic statistics: the minimum value, the first quartile, median, mean, third quartile and the maximum, for example:
 
@@ -292,7 +281,15 @@ summary(turbidity$Result)
 
 Q> What is the third quartile for the turbidity of sample point 090A01?
 
-The `quantile()` function calculates the percentiles of a vector of numbers. The default setting gives five values, similar to the `summary()` function. The quantile function can also take a vector of one or more probabilities to calculate different outcomes, for example `quantile(turbidity$Result, c(0.50, 0.95))` results in:
+Answer: Filter the results for this sample point. Note that the new variable starts with a letter to avoid an error. The summary function provides the 75^th^ percentile of the results.
+
+{format: r, line-numbers: false} 
+```
+p090a01 <- filter(turbidity, Sample_Point == "090A01")
+summary(p090a01$Result)
+```
+
+The `summary()` function is useful for a quick overview, but not very useful in detailed analysis because it has little flexibility. The `quantile()` function calculates the percentiles of a vector of numbers. The default setting gives five values, similar to the `summary()` function. The quantile function can also take a vector of one or more probabilities to calculate different outcomes, for example `quantile(turbidity$Result, c(0.50, 0.95))` results in the following vector:
 
 {line-numbers: false} 
 ```
@@ -307,9 +304,9 @@ The regulator has specified that we need to calculate the 95^th^ percentile with
 quantile(turbidity$Result, 0.95, method = 6)
 ```
 
-In this particular case, the results are not very skewed, so all methods give the same result. 
+In this particular case, the results are not very skewed, so all methods provide the same result.
 
-One last function to review is a more convenient way to analyse subsets of the data. The `group_by()` function in the dplyr library splits the data into subsets. We can use this special type of table to compute summary statistics for each group. For example, to determine the maximum turbidity value for each water quality zone, we use:
+One last function to review is a convenient method to analyse subsets of the data. The `group_by()` function in the dplyr library splits the data into subsets. We can use this special type of table to compute summary statistics for each group using the `summarise()` function. For example, to determine the maximum turbidity value for each water quality zone, we use:
 
 {format: r, line-numbers: false} 
 ```
@@ -317,11 +314,13 @@ turb_zones <- group_by(turbidity, Zone)
 summarise(turb_zones, Maximum = max(Result))
 ```
 
-The first argument in this function is the data vector, and the second argument is a list of the grouping variables. In this case, we only have one, but it can be more.
+The first argument in this function is the data vector, and the second argument is a list of the grouping variables. In this case, we only have one, but it can be more. The `turb_zones` variable is a grouped table.
 
 The `summarise()` function takes a grouped table as input and calculates relevant values over the groups. In the example above, we determine the maximum result for each zone.
 
 We now have all the knowledge to answer the original question.
+
+Q> What is the mean turbidity for each sample point?
 
 ## Quiz 1: Water Quality Regulations
 The project folder for this case study includes a file named `gormsey.csv` with fictitious water quality data. 
@@ -423,100 +422,3 @@ You can find the answers and workings for each of the questions at the end of th
 That's it for the first quiz. Now on to the next [chapter](#tidyverse) where we will look at visualising data with the *ggplot* library of the Tidyverse.
 
 {/quiz}
-
-## Answers to the questions
-
-### You have 99 turbidity results. The first 94 are 0.1 NTU, and the last five are 5 NTU. What is the 95^th^ percentile using the Weibull method?
-Answer without using any code:
-1. Rank the results in ascending order: `0.1, 0.1, \ldots , 5, 5, 5`$.
-2. Determine the percentile rank: `0.95 \times (99 + 1) = 95`$.
-3. The 95^th^ percentile is the 95^th^ result, which is 5 NTU.
-
-We can also answer this question using R code:
-
-{format: r, line-numbers: false}
-```
-results <- c(rep(0.1, 94), rep(5, 6))
-rank <- 0.95 * (length(results) + 1)
-rank_frac <- (rank - floor(rank))
-(1 - rank_frac) * results[floor(rank)] + rank_frac * results[floor(rank) + 1]
-```
-
-The first line creates the results. The `rep()` function repeats a variable, in this case, 94 times and 5 times. The two vectors are concatenated in one vector, using the `c()` function.
-
-The second line determines the rank of the 95^th^ percentile following the Weibull method. 
-
-The last line interpolates between the results in case the rank is not an integer. If the rank is an integer, then that value is used because the fraction is 0. The `floor()` function removes the decimals from a number.
-
-### Use the `nrow` and `ncol` functions to determine the size of the data frame.
-The `nrow()` and `ncol()` functions list the number of rows and columns for a data frame. The result is a single number. The dim function shows both results in a vector of two numbers.
-
-{format: r, line-numbers: false}
-```
-nrow(turbidity)
-ncol(turbidity)
-dim(turbidity)
-```
-
-### What is the result of the last sample taken in the turbidity? Hint, use the `nrow()` function.
-To find the last element of the data frame, use the `nrow()` function within square brackets.
-
-{format: r, line-numbers: false}
-```
-turbidity$Results[nrow(turbidity)]
-```
-
-### How many turbidity results, except in Bealiba, are lower than to 0.5 NTU?
-We subset the data for all results less than 0.5 and where the zone is not Bealiba. The nrow function counts the results.
-
-{format: r, line-numbers: false}
-```
-nrow(subset(turbidity, Results < 0.5 & Zone != "Bealiba"))
-```
-
-### Plot the histogram of each of the Laanecoorie water quality zone.
-To plot a part of the data, we first need to create a subset.
-
-{format: r, line-numbers: false}
-```
-l <- subset(turbidity, Zone = "Laanecoorie")
-b <- max(l$Result) / 0.1
-hist(l$Result, breaks = b)
-```
-
-It can be tedious to have to repeat this several times for the same data. A more advanced method is to use a loop. R can also display more than one plot on one screen using the `par()` function. This function modifies various aspects of the plot screen. The `mfrow` option defines how the screen is split. In this case, the screen is divided in two by two plots.
-
-The `for` function lets you loop through a vector, in this case, the unique values of the water quality zone. The variable `z` is assigned each of the values of the water quality zones, which are then plotted as above.
-
-{format: r, line-numbers: false} 
-```
-par(mfrow = c(2, 2))
-for (z in unique(turbidity$Zone)) {
-    l <- subset(turbidity, Zone = z)
-    b <- max(l$Result) / 0.1
-    hist(l$Result, breaks = b, main = z)
-}
-```
-
-### What is the mean turbidity value for the samples in Bealiba?
-Use the `mean()` function to calculate the value. Select all results where the zone variable is Bealiba.
-
-{format: r, line-numbers: false} 
-```
-mean(turbidity$Result[turbidity$Zone == "Bealiba"])
-```
-
-### What is the third quartile for the turbidity of sample point 090A01?
-
-{format: r, line-numbers: false} 
-```
-summary(turbidity$Result[turbidity$Sample_Point == "090A01"])
-```
-
-### Determine the 95^th^percentile using the Weibull method for all water quality zones in Laanecoorie.
-
-{format: r, line-numbers: false} 
-```
-quantile(turbidity$Result, 0.95, method = 6) ## Weibull method
-```
-

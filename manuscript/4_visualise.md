@@ -1,4 +1,4 @@
-# Visualisations with Tidyerse {#tidyverse}
+# Visualising Data with ggplot2 {#tidyverse}
 
 ### Visualise the data
 The fastest way to explore data is to visualise it. R has extensive built-in visualisation function, some of which we explore below. The [R Graph Gallery](https://www.r-graph-gallery.com/) provides some guidance on the available methods.
@@ -45,9 +45,7 @@ boxplot(Result ~ Zone, data = turbidity, col = "lightblue",
 
 Each of these visualisation functions has extensive options to change the plot, which are outside the scope of this course. In the next two case studies, we explore the powerful visualisation functionality of the Tidyverse extension to the R language.
 
-
-
-The next [case study](#casestudy2) looks at data collected from tap water consumers in the United States and introduces the Tidyverse principles using this data. This chapter introduces data visualisation using *ggplot2* from the Tidyverse collection of libraries. 
+This chapter introduces data visualisation using *ggplot2* from the Tidyverse collection of libraries. 
 
 #### Visualising Data
 Data visualisations are everywhere. They are no longer the domain of scientific publications and business reports. Publications in every medium use graphs to tell stories. The internet is awash with infographics on a wide range of topics. These popular images are often data science porn because they are designed to entertain and titillate, with limited usability from a business perspective. They are a fantastic tool to supply information to customers but should not be used to report data science.
@@ -370,3 +368,6 @@ ggplot(thm, aes(Zone, Result)) +
 ![Figure 4.11 THM distributions in the Gormsey water quality zones.](resources/session4/gormsey_thm_zone.png)
 
 In the second [case study](#casestudy2) we dig deeper into he Tidyverse by cleaning data from a customer survey.
+
+
+The next [case study](#casestudy2) looks at data collected from tap water consumers in the United States and delves deeper into the Tidyverse. 
