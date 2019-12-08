@@ -5,7 +5,7 @@ Data visualisations are everywhere. They are no longer the domain of scientific 
 
 Aesthetics and usefulness go hand in hand. Some data visualisations in engineering remind me of a [Jackson Pollock](https://en.wikipedia.org/wiki/Jackson_Pollock) painting, with multitudes of lines and colours splashed over the screen (Figure 4.1). Adding too much information to a graph and using too many colours reduces its usability. When visualisation is not aesthetic, it becomes harder to interpret, which leads to the wrong conclusions and can even deceive the user.
 
-{width: 80%}
+{width: 70%}
 ![Figure 4.1: Jackson Pollock (1952) Blue Poles number 11. Drip Painting in enamel and aluminium paint with glass on canvas (National Gallery, Canberra. Source: Wikimedia).](resources/session1/bluepoles.jpg)
 
 A data scientist needs to be aware of cognitive biases to prevent them and create data products that don't deceive. Many of these biases relate to how information is presented.
@@ -26,7 +26,7 @@ First and foremost, visualisation needs to tell a story. The story in data visua
 
 Numerical data can contain several types of narratives. A graph can compare data points to show a trend among items or communicate differences between them. Bar charts are the best option to compare data points with each other. A line graph is possibly your best option to compare data points over time. The distribution of data points is best visualised using a histogram. Scatter plots or bubble charts show relationships between two or three variables (Figure 4.3).
 
-{width: 80%}
+{width: 70%}
 ![Figure 4.3: Examples of stories with quantitative data.](resources/session1/stories.png)
 
 Every visualisation needs to tell a story and not just summarise a bunch of data. The detailed considerations of choosing the most suitable visualisation are outside the scope of this book. The internet contain many tools to help you with this choice.The was developed by [Andrew Abela](https://extremepresentation.typepad.com/blog/2008/06/visualization-taxonomies.html). The [R Graph Gallery](https://www.r-graph-gallery.com/) provides some guidance on the methods available in R.
@@ -50,7 +50,7 @@ To improve this version, all unnecessary graphical elements have been removed. A
 
 The basic rule of visually communicating data is to not 'pimp' your visualisations with unnecessary graphical elements or text that does not add to the story. When visualising data, austerity is best-practice.
 
-{width: 80%}
+{width: 70%}
 ![Figure 4.4: Examples of the data-pixel ratio.](resources/session1/data-pixel-ratio.png)
 
 ## Visualising data with ggplot
@@ -112,6 +112,7 @@ The minimum amount of colour depends on the narrative you want to convey and the
 
 Besides minimising the number of colours, we also need to know which colours to use. Cartographers Mark Harrower and Cynthia Brewer developed the Color Brewer system ([colorbrewer2.org](http://colorbrewer2.org/)) to help designers of visualisations select a good scheme. These colour schemes are designed for choropleth maps, but can also be used for non-spatial visualisations. The Color Brewer system consists of three types of colour palates: sequential, diverging and qualitative (Figure 4.8). 
 
+{width: 50%}
 ![Figure 4.8: Types of colour palates.](resources/session4/ColorBrewer.png)
 
 Sequential schemes contain a series of colours with increasing strength. These colour schemes are most suitable to visualise magnitude from low to high, with light colours usually for low data values and dark colours for high values.
@@ -130,6 +131,7 @@ ggplot(turbidity, aes(Date_Sampled, Result, col = Zone)) +
     geom_line()
 ```
 
+{width: 70%}
 ![Figure 4.9: Laanecoorie turbidity time series.](resources/session4/time_series.png)
 
 This code is the same as the first version but with the option `col = Zone` added. This example is not an optimal use of this functionality because there are too many lines, which are hard to read. We will fix this when we discuss facets. 
@@ -181,7 +183,7 @@ ggplot(turbidity, aes(Date_Sampled, Result)) +
     geom_hline(yintercept = 1, col = "Red") + 
     facet_wrap(~Zone, ncol = 1)
 ```
-{width: 100%}
+{width: 70%}
 ![Figure 4.12: Turbidity in water quality zones.](resources/session4/stats.png)
 
 ### Coordinates

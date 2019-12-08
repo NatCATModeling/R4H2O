@@ -27,7 +27,7 @@ The [first chapter](#datascience) defines data science as an evolution of tradit
 
 This course is not only about the vocabulary and syntax of R, but also about doing good data science. This session introduces a framework for best practice in analysing data and sharing the results. This framework derives from the book [Principles of Strategic Data Science](https://www.packtpub.com/big-data-and-business-intelligence/principles-strategic-data-science) by Peter Prevos. The three case studies each implement aspects of this framework.
 
-{width: "30%", alt: "Principles of Strategic Data Science.", align: "middle"}
+{width: "50%", alt: "Principles of Strategic Data Science.", align: "middle"}
 ![Peter Prevos, (2019) Principles of Strategic Data Science.](resources/session0/StrategicDataScience.png)
 
 ## Introduction to the R Language
@@ -41,11 +41,11 @@ In this [first case study](#casestudy1), participants apply their skills to labo
 
 The analysis uses the Tidyverse library. The ![Tidyverse](https://tidyverse.org/) is a collection of extensions of the R language that simplifies manipulating, analysing and presenting data science. 
 
-{width: "80%", alt: "Distribution of turbidity results.", align: "middle"}
-![Distribution of turbidity results (Case Study 1).](resources/session3/boxplot-zones.png)
-
 ## Visualising Data
-The [fourth chapter](#tidyverse) delves into the basic principles of visualising data with the ggpot2 library, using data from the first case study. Participants use a 
+The [fourth chapter](#tidyverse) delves into the basic principles of visualising data with the ggpot2 library, using data from the first case study.
+
+{width: "80%", alt: "Distribution of turbidity results.", align: "middle"}
+![Distribution of turbidity results (Case Study 1).](resources/session4/boxplot.png)
 
 ## Data Products
 The [fifth chapter](#dataproducts) focuses on the data science workflow as an iterative process to solve a data problem. A data product is the result of a data science project, which can be a report, website or an application.

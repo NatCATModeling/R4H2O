@@ -223,4 +223,4 @@ X> Create a short PowerPoint presentation about the Gormsey data.
 5. Explore the data.
 6. Share the story.
 
-In the last [case study](#casestudy3), we go back to the Tidyverse to analyse data from smart meters.
+In the second [case study](#casestudy2), we will look at information collected from customers and how to deal with messy data.

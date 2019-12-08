@@ -7,5 +7,3 @@
 6_case_study_2.md
 7_case_study_3.md
 8_capstone.md
-9_quiz_answers.md
-references.md

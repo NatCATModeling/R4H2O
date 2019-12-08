@@ -368,5 +368,5 @@ D> Do you notice anything unusual in this data? What conclusion might you draw f
 
 We have not yet determined the level of involvement, as requested in the problem statement. We hold this back until we look at analysing data with Tidyverse in the third case study.
 
-The [next chapter](#dataproducts) looks at methods to publish results through data products s that we can share our beautiful visualisations and analysis.
+The [last case study](#casestudy3) looks at more advanced analysis using digital metering data.
 

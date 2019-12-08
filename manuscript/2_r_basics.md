@@ -79,7 +79,7 @@ abline(v = 0, col = "grey")
 
 In its most basic form, R is a calculator that uses arithmetic operators as listed in the table below. R is meme-proof because it know the correct answer to the many arithmetic memes distributed on social media.
 
-![Arithmetic memes](Resources/session2/memes.jpg)
+![Arithmetic memes](resources/session2/memes.jpg)
 
 | Operator | Function       | Example        |
 | :---:    | :---           | :---           |
@@ -221,9 +221,11 @@ B) `(2/3) * Cd * sqrt(2 * 9.81) * b * ((50:500)/1000)^(3/2)`
 c) Repeat for each value of `h`$: `(2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)`
  
 You can find the answers in the `channel_flow.R` script in the `introduction` folder of your project folder.
+
+You can go [back to the course](#afterex1).
 {/exercise}
 
-## RStudio scripts and projects
+## RStudio scripts and projects{#afterex1}
 The console provides a running record of the actions taken by R. While this is great, using the console makes it hard to reconstruct what steps you have taken to get to your result. To create reproducible code, you need to write your code in a file. 
 
 Create a new R script by going to *File > New File > R Script* or by hitting Control-Shift N. You can open an existing file from the same menu.

@@ -32,10 +32,10 @@ The process to determine a percentile consists of three steps (McBride, [2005](h
 3. Interpolate between adjacent numbers: `x_p=(1-r_{frac})Y_{r_{int}}+r_{frac}Y_{r_{int+1}}`$
 
 Where:
-* `r_{frac}`: Decimal fraction of the ranking.
-* `r_{int}`: Rounded ranking.
+* `r_{frac}`$: Decimal fraction of the ranking.
+* `r_{int}`$: Rounded ranking.
 
-With 52 ranked weekly turbidity samples, the 95^th^ percentile is logically between sample 49 and 50 (`0.95 \times 52`$). However, this method is only valid for normally-distributed samples. 
+With 52 ranked weekly turbidity samples, the 95^th^ percentile is logically between sample 49 and 50 (0.95 times 52). However, this method is only valid for normally-distributed samples. 
 
 Statisticians have defined several methods to determine percentiles. The difference between these approaches is the rule to determine the rank `r`$. Hyndman & Fan ([1996](https://www.researchgate.net/publication/222105754_Sample_Quantiles_in_Statistical_Packages)) give a detailed overview of nine methods of calculating percentiles or quantiles. This paper gives the Weibull method the less poetic name `\hat{Q}_6(p)`$ because it is the sixth option in their list. Waloddi Weibull, a Swedish engineer famous for his statistical distribution, was one of the first to describe this method. The rank of a percentile `p`$ is given by:
 
@@ -223,7 +223,7 @@ a * 2
 
 The second method uses the `filter()` function, which is more convenient than using square brackets. The first parameter in this function is the data frame, and the second parameter is the condition. Note that this method is tidier than the brackets method because we don't have to add the data frame name and `$` to the variables.
 
-![`filter(df, var == "B"`](casestudy1/filter.png)
+![`filter(df, var == "B"`](resources/session3/filter.png)
 
 You can use all the common relational operators to test for conditions:
 
@@ -309,7 +309,7 @@ In this particular case, the results are not very skewed, so all methods provide
 
 One last function to review is a convenient method to analyse subsets of the data. The `group_by()` function in the dplyr library splits the data into subsets. 
 
-![Grouping a data frame with `group_by(df, var)`.](casestudy1/grouping.png)
+![Grouping a data frame with `group_by(df, var)`.](resources/session3/grouping.png)
 
 We can use this special type of table to compute summary statistics for each group using the `summarise()` function. For example, to determine the maximum turbidity value for each water quality zone, we use:
 
@@ -357,7 +357,7 @@ B) 2879
 c) 516
 d) 3
 
-? How many E Coli results were recorded in the Gormsey system? The limit for E Coli is 0 org/100ml.
+? How many E Coli results were recorded in the Gormsey system?
 
 a) 1145
 B) 1470
@@ -371,7 +371,7 @@ b) Numeric
 c) Factor
 D) Character
 
-? How many E Coli results breached the regulations?
+? How many E Coli results breached the regulations? The limit for E Coli is 0 org/100ml.
 
 a) 1
 b) 0
@@ -420,10 +420,8 @@ b) 8.82
 c) 0.3
 d) 7.34
 
-Thanks for answering these questions.
+Thanks for answering these questions. You can find the answers in the `gormsey_quiz.R` script.
 
-You can find the answers and workings for each of the questions at the end of the course.
-
-That's it for the first quiz. Now on to the next [chapter](#tidyverse) where we will look at visualising data with the *ggplot* library of the Tidyverse.
+That's it for the second exercise. Now on to the next [chapter](#tidyverse) where we will look at visualising data with the *ggplot* library of the Tidyverse.
 
 {/exercise}
