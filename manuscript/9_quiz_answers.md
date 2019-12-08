@@ -1,40 +1,4 @@
-# Quiz Answers {#answers}
-## Quiz 2: Channel Flows
-### Question 1: What is the flow in the channel in megalitres per day when the height `h = 100mm`$?
-We need to covert the level from millimetres to metres and enter this into the formula. The result will be in m^3/s and needs to be converted to megalitres per day.
-
-{format: r, line-numbers: false}
-```
-b <- 0.6
-Cd <- 0.6
-h <- 100 / 1000
-q <- (2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)  # m3 / s
-q * 3600 * 24 / 1E3  # ML / day
-```
-
-### Question 2: What is the average flow for these multiple heights?
-The heights are 150mm, 136mm, 75mm in litres per second? We can use vector operations to use the formula only once. Because we are in the console, you can recall the formula by using the up arrow a few times. The result will also be a vector and we can calculate the average with the `mean()` function.
-
-{format: r, line-numbers: false}
-```
-h <- c(150, 136, 75) / 1000 # Heights in meters
-q <- (2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)
-mean(q) * 1000
-```
-
-### Question 3: Which of these expressions calculates the flow in cubic meters per second for all heights (`h`$) between 50mm and 500mm? 
-We can store all the heights in a vector using the semi-colon. The result will be a large vector with flows. 
-
-The first option is incorrect because the colon can only be use with integers.
-
-The second option is correct.
-
-The third option is a silly suggestion as we need to repeat the formula 451 times.
-
-a) `(2/3) * Cd * sqrt(2 * 9.81) * b * (0.05:0.50)^(3/2)`
-B) `(2/3) * Cd * sqrt(2 * 9.81) * b * ((50:500)/1000)^(3/2)`
-c) Repeat for each value of `h`$: `(2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)`
-
+# Answers {#answers}
 ## Quiz 2: Water Quality Regulations
 The first step is to load the Gormsey data:
 

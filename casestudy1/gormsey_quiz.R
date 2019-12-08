@@ -1,10 +1,5 @@
 ## Quiz 2: Water Quality Regulations
 
-## Correct answer key
-## This code randomly generates the order of correct answers
-set.seed(1)
-sample(LETTERS[1:4], 10, replace = TRUE)
-
 library(tidyverse)
 
 ## Read data
@@ -30,22 +25,22 @@ thm <- filter(gormsey, Measure == "THMs")
 median(thm$Result)
 
 ## Question 6: Which zone has breached the Victorian regulations for THM?
-boxplot(Result ~ Zone, data = subset(gormsey, Measure == "THMs"))
-abline(h = 0.25, col = "red")
-breach <- filter(thm, Result > 0.25)
-unique(select(breach, Zone))
+breach_thm <- filter(thm, Result > 0.25)
+unique(breach_thm$Zone)
 
 ## Question 7: How many sample points have been used in the Pontybridge zone?
 pontybridge <- filter(gormsey, Zone == "Pontybridge")
 length(unique(pontybridge$Sample_Point))
 
 ## Question 8: Which zone shows the highest level of turbidity?
-boxplot(Result ~ Zone, data = gormsey)
-filter(gormsey, Measure == "Turbidity" & Result == max(Result))
+gormsey_turbidity_max <- filter(gormsey, Measure == "Turbidity" & Result == max(Result))
+gormsey_turbidity_max$Zone
 
 ## Question 9: What is the lowest level of turbidity measured in the system?
-min(turbidity$Result)
+gormsey_turbidity <- filter(gormsey, Measure == "Turbidity")
+min(gormsey_turbidity$Result)
 
-## Question 10: What is the 95^th^ percentile of the turbidity for each zone in the Gormsey system, using the Weibull method?
-turbidity_zones <- group_by(turbidity, Zone)
-summarise(turbidity_zones, p95 = quantile(Result, 0.95, method = 6))
+## Question 10: What is the highest 95^th^ percentile of the turbidity for each zone in the Gormsey system, using the Weibull method?
+turbidity_zones <- group_by(gormsey_turbidity, Zone)
+percentiles <- summarise(turbidity_zones, p95 = quantile(Result, 0.95, type = 6))
+max(percentiles$p95)

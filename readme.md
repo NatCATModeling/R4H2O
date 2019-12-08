@@ -10,3 +10,5 @@ This repository contains the following folders:
 * `casestudy2`   : Case study data and files.
 * `casestudy3`   : Case study data and files.
 * `manuscript`   : Course syllabus (best viewed through [LeanPub course](https://leanpub.com/c/R4H2O)).
+* `cheatsheet`   : Cheat sheet for the functions needed to complete the exercises.
+* `presentations`: Slides.

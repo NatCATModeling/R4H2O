@@ -258,6 +258,4 @@ The three case studies in this course don't just discuss writing code but also d
 
 Each case study starts with a problem definition that explains the issue that needs resolution. Starting analysis with a problem statement is critical to ensure that our work is useful and able to deliver value. Each case study also includes a description of the reality from which the data was extracted. Understanding the context of abstract data minimises mistakes in interpretation.
 
-X> To prepare for the first case study, please install the [R software](https://www.r-project.org/) and the [RStudio](https://www.rstudio.com/) environment. You also need to download the [course files](https://github.com/pprevos/r4h2o) to obtain the data files and code examples.
-
 The [next chapter](#basics) introduces the basics of the R language and using RStudio.

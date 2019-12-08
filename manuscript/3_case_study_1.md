@@ -1,5 +1,5 @@
 # Case Study: Water Quality Regulations {#casestudy1}
-The case study for this first session is about assessing compliance with water quality regulations. The data for this case study is a set of turbidity measurements for the [Laanecoorie water network](https://www.coliban.com.au/site/root/your_town/loddon/laanecoorie.html), situated just over 100 km North of Melbourne in Victoria, Australia. The plant extracts water from the Laanecoorie reservoir, located on the Loddon River.
+The case study for this first session is about assessing compliance with water quality regulations. The example data for this case study is a set of turbidity measurements for the [Laanecoorie water network](https://www.coliban.com.au/site/root/your_town/loddon/laanecoorie.html), situated just over 100 km North of Melbourne in Victoria, Australia. The plant extracts water from the Laanecoorie reservoir, located on the Loddon River.
 
 The water network is divided into four zones, each of which has a set of sample points installed just upstream of the water meter. Each of these sample points has a unique identifier that consists of three digits (090 for the Laanecoorie system), a letter to indicate the zone, and two digits to indicate the number of the sample point.
 
@@ -27,13 +27,17 @@ The soundness of good data science also requires an appropriate methodology to a
 
 The process to determine a percentile consists of three steps (McBride, [2005](http://amzn.to/2k8shr8)):
 
-1. Rank the data into ascending order (`X_1, X_2, \ldots , X_n`$).
-2. Determine the rank (`r`$) of the percentile.
-3. The percentile is the value in position `r`$. When the rank is not an integer, linearly interpolate between two values `X_{r-1}`$ and `X_{r+1}`$.
+1. The numbers are placed in ascending order: `y_1, y_2, \ldots y_n`$.
+2. Calculate the rank (`r`$) of the required percentile.
+3. Interpolate between adjacent numbers: `x_p=(1-r_{frac})Y_{r_{int}}+r_{frac}Y_{r_{int+1}}`$
 
-With 52 ranked weekly turbidity samples, the 95^th^ percentile is between sample 49 and 50 (`0.95 \times 52`$). However, this method is only valid for normally-distributed samples. 
+Where:
+* `r_{frac}`: Decimal fraction of the ranking.
+* `r_{int}`: Rounded ranking.
 
-Statisticians have defined several methods to determine percentiles. The difference between these methods is the method to determine the rank `r`$. Hyndman & Fan ([1996](https://www.researchgate.net/publication/222105754_Sample_Quantiles_in_Statistical_Packages)) give a detailed overview of nine methods of calculating percentiles or quantiles. This paper gives the Weibull method the less poetic name `\hat{Q}_6(p)`$ because it is the sixth option in their list. Waloddi Weibull, a Swedish engineer famous for his statistical distribution, was one of the first to describe this method. The rank of a percentile `p`$ is given by:
+With 52 ranked weekly turbidity samples, the 95^th^ percentile is logically between sample 49 and 50 (`0.95 \times 52`$). However, this method is only valid for normally-distributed samples. 
+
+Statisticians have defined several methods to determine percentiles. The difference between these approaches is the rule to determine the rank `r`$. Hyndman & Fan ([1996](https://www.researchgate.net/publication/222105754_Sample_Quantiles_in_Statistical_Packages)) give a detailed overview of nine methods of calculating percentiles or quantiles. This paper gives the Weibull method the less poetic name `\hat{Q}_6(p)`$ because it is the sixth option in their list. Waloddi Weibull, a Swedish engineer famous for his statistical distribution, was one of the first to describe this method. The rank of a percentile `p`$ is given by:
 
 ```$
 r_{weibull} = p(n + 1)
@@ -43,7 +47,7 @@ For a sample of 52 turbidity tests, the percentile thus lies between ranked resu
 Please note that there is no one correct way to calculate percentiles. The most suitable method depends on the distribution of the population and the purpose of the analysis. In this case study, the method is prescribed by the regulator.
 
 ## Analysing the case study
-The sections below explain how to analyse an example data set with turbidity data for compliance with the Victorian Safe Drinking Water Regulations. The data and the code is available in the [GitHub](https://github.com/pprevos/r4h2o/casestudy1) repository. Before we determine the relevant statistics, we need to load and explore the data. 
+The sections below explain how to analyse an example data set with turbidity data for compliance with the Victorian Safe Drinking Water Regulations. The data and the code is available in the [GitHub](https://github.com/pprevos/R4H2O/tree/master/casestudy1) repository. Before we determine the relevant statistics, we need to load and explore the data. 
 
 The code is available in the `casestudy1.R` file in the `casestudy1` folder. The best way to learn the material is to type all the examples and assignments in your file, run the code and explore the results. Playing with the code by trying different variations is the best way to become familiar with the vocabulary and syntax of any programming language.
 
@@ -82,9 +86,9 @@ cols(
 
 The turbidity data is now visible in the *Environment* tab. The turbidity variable is a data frame, which is a tabular set of data with rows (observations) and columns (variables), very much like a spreadsheet.
 
-A data frame is a variable that holds tabular data, like in a spreadsheet. Within the Tidyverse, a data frame is called a *Tibble*. This strange term is a reference to the New Zealand accent of the main developer of this software, Hadley Wickam.
+A data frame is a variable that holds tabular data, like in a spreadsheet. Within the Tidyverse, a data frame is called a *Tibble*. This quaint term is a reference to the New Zealand accent of the main developer of this software, Hadley Wickam.
 
-The data is stored in rows and columns. Each column is a variable, which are sometimes called a data field or a parameter. Each row holds an observation or a measurement. The table below shows the start of a data frame with one row as an example.
+The data is stored in rows and columns. Each column is a variable, which are called a data field or a parameter. Each row holds an observation or a measurement. The table below shows the start of a data frame with one row as an example.
 
 | Sample_No | Date_Sampled | Sample_Point | Zone | Result | Units |
 |-----------|--------------|--------------|------|--------|-------|
@@ -139,7 +143,6 @@ Answer: The `nrow()` and `ncol()` functions list the number of rows and columns 
 ```
 nrow(turbidity)
 ncol(turbidity)
-dim(turbidity)
 ```
 
 Lastly, the `glimpse()` function provides a succinct overview of the fields in the data set, including the data types. When executing this function on the turbidity data we see:
@@ -165,10 +168,6 @@ This overview contains a lot of information:
 * Full list of the variables names (e.g. Sample_No, Zone ...)
 * Data type of each variable (e.g. dbl (integer), date, characters)
 * First few observations for each variable
-
-R uses many different types of variables. In a data frame, each variable can be a different type. When the `read_csv()` function reads the file, it assigns the most likely class.
-
-Numeric (num) values and integers (int) are numbers that can be used in calculations using the arithmetic operators and functions. 
 
 ### Explore the data
 To view any of the variables within a data frame, you need to add the column name after a `$`, e.g. `turbidity$Result`. When you execute this command, R shows a vector of the selected variable. You can use this vector in calculations, as explained below.
@@ -203,7 +202,7 @@ You can also filter the data using conditions. If, for example, you like to see 
 {format: r, line-numbers: false}
 ```
 turbidity[turbidity$Zone == "Bealiba", ]
-subset(turbidity, Zone == "Bealiba")
+filter(turbidity, Zone == "Bealiba")
 ```
 
 The first method looks similar to what we discussed above. The row indicator now shows an equation. When you execute the line between brackets separately, you see a list of values that are either `TRUE` or `FALSE`. These values indicate whether the variable at that location meets the condition. For example, the following code results in a vector with the values TRUE and FALSE.
@@ -223,6 +222,8 @@ a * 2
 ```
 
 The second method uses the `filter()` function, which is more convenient than using square brackets. The first parameter in this function is the data frame, and the second parameter is the condition. Note that this method is tidier than the brackets method because we don't have to add the data frame name and `$` to the variables.
+
+![`filter(df, var == "B"`](casestudy1/filter.png)
 
 You can use all the common relational operators to test for conditions:
 
@@ -247,13 +248,13 @@ An example of a logical operation would be the expression `"small" > "large" & 1
 
 We can apply this knowledge to our case study to test subsets of the data:, `filter(turbidity, Zone == "Laanecoorie" & Result > 1)` shows the samples in the Laanecoorie zone with a result greater than 1 NTU. Note that testing for equality requires two equal signs.
 
-Q> How many turbidity results in all zones, except Bealiba, are lower than to 0.1 NTU?
+Q> How many turbidity results in all zones, except Bealiba, are lower than 0.1 NTU?
 
-Answer: We subset the data for all results less than 0.5 and where the zone is not Bealiba. The nrow function counts the results.
+Answer: We subset the data for all results less than 0.1 NTU and where the zone is not Bealiba. The nrow function counts the results.
 
 {format: r, line-numbers: false}
 ```
-nrow(subset(turbidity, Results < 0.5 & Zone != "Bealiba"))
+nrow(filter(turbidity, Zone != "Bealiba" & Result < 0.1))
 ```
 
 ### Analyse the data
@@ -301,12 +302,16 @@ The regulator has specified that we need to calculate the 95^th^ percentile with
 
 {format: r, line-numbers: false} 
 ```
-quantile(turbidity$Result, 0.95, method = 6)
+quantile(turbidity$Result, 0.95, type = 6)
 ```
 
 In this particular case, the results are not very skewed, so all methods provide the same result.
 
-One last function to review is a convenient method to analyse subsets of the data. The `group_by()` function in the dplyr library splits the data into subsets. We can use this special type of table to compute summary statistics for each group using the `summarise()` function. For example, to determine the maximum turbidity value for each water quality zone, we use:
+One last function to review is a convenient method to analyse subsets of the data. The `group_by()` function in the dplyr library splits the data into subsets. 
+
+![Grouping a data frame with `group_by(df, var)`.](casestudy1/grouping.png)
+
+We can use this special type of table to compute summary statistics for each group using the `summarise()` function. For example, to determine the maximum turbidity value for each water quality zone, we use:
 
 {format: r, line-numbers: false} 
 ```
@@ -327,7 +332,7 @@ The project folder for this case study includes a file named `gormsey.csv` with 
 
 The data is extracted from a real system but modified to provide more variability in the data. The names of the towns were randomly generated using the [Fantasy Names Generator](https://www.fantasynamegenerators.com/town_names.php) website. 
 
-This file contains samples for turbidity, [Escherichia coli](https://en.wikipedia.org/wiki/Escherichia_coli) and [trihalomethanes](https://en.wikipedia.org/wiki/Trihalomethane) (THMs). E Coli is a coliform bacterium that can cause gastroenteritis. THMs are chemical compounds that are predominantly formed as a by-product when chlorine is used to disinfect drinking water. Turbidity was described in detail earlier in the case study description.
+This file contains samples for turbidity, [Escherichia coli](https://en.wikipedia.org/wiki/Escherichia_coli) and [trihalomethanes](https://en.wikipedia.org/wiki/Trihalomethane) (THMs). E Coli is a coliform bacterium that can cause gastroenteritis. THMs are a group of chemical compounds that are predominantly formed as a by-product when chlorine is used to disinfect drinking water. Turbidity was described in detail earlier in the case study description.
 
 The Victorian *Safe Drinking Water Regulations* sets limits for each of these three parameters:
 * *Escherichia coli*: All samples of drinking water collected are found to contain no Escherichia coli per 100 millilitres of drinking water, except false positive samples.
@@ -336,13 +341,13 @@ The Victorian *Safe Drinking Water Regulations* sets limits for each of these th
 
 You can assume that all reported samples in the data are verified results. 
 
-X> Load the Gormsey data and explore it using the tools described in this lesson.
+X> Load the Gormsey data and explore it using the tools described in this chapter.
 
-After you have explored the data, you can complete the first quiz to test your proficiency. 
+After you have explored the data, you can complete the exercise to test your proficiency.
 
 X> Click on the link to complete the quiz or move the [next chapter](#tidyverse).
 
-{quiz, id: casestudy1, attempts: 10}
+{exercise, id: casestudy1, attempts: 10}
 Load the Gormsey water quality data from the first case study and answer these ten questions.
 
 ? How many results does the Gormsey data contain?
@@ -352,7 +357,7 @@ B) 2879
 c) 516
 d) 3
 
-? How many E Coli results were recorded in the Gormsey system?
+? How many E Coli results were recorded in the Gormsey system? The limit for E Coli is 0 org/100ml.
 
 a) 1145
 B) 1470
@@ -363,8 +368,8 @@ d) 2879
 
 a) Integer
 b) Numeric
-C) Factor
-d) Character
+c) Factor
+D) Character
 
 ? How many E Coli results breached the regulations?
 
@@ -380,7 +385,7 @@ b) 0
 c) 0.1
 d) 0.25
 
-? Which zone has breached the Victorian regulations for THM?
+? Which zone has breached the Victorian regulations for THM? The limit is 0.25 mg/l.
 
 a) Gormsey
 b) Bellmoral
@@ -410,10 +415,10 @@ d) 5
 
 ? What is the highest 95^th^ percentile of the turbidity for each zone in the Gormsey system, using the Weibull method?
 
-A) 5.62
+A) 5.725
 b) 8.82
-c) 0.30
-d) 5
+c) 0.3
+d) 7.34
 
 Thanks for answering these questions.
 
@@ -421,4 +426,4 @@ You can find the answers and workings for each of the questions at the end of th
 
 That's it for the first quiz. Now on to the next [chapter](#tidyverse) where we will look at visualising data with the *ggplot* library of the Tidyverse.
 
-{/quiz}
+{/exercise}

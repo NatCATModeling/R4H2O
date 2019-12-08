@@ -63,8 +63,11 @@ X> Type the following code, or variations thereof into the console and review th
 ```r
 3 - 3 * 6 + 2
 
-a <- c(12, 3, -23, 45, 2, 99, 1, 0)
-mean(a)
+r <- 6371
+4 * pi * r^2
+
+b <- c(12, 3, -23, 45, 2, 99, 1, 0)
+mean(b)
 
 x <- -10:10
 y <- -x^2 -2 * x + 30
@@ -74,12 +77,9 @@ abline(h = 0, col = "grey")
 abline(v = 0, col = "grey")
 ```
 
-The video below explains the basic principles of RStudio.
+In its most basic form, R is a calculator that uses arithmetic operators as listed in the table below. R is meme-proof because it know the correct answer to the many arithmetic memes distributed on social media.
 
-{width: 100%}
-![Introduction to RStudio](https://www.youtube.com/watch?v=roTCgjxpMEg)
-
-In its most basic form, R is a calculator that uses arithmetic operators as listed in the table below.
+![Arithmetic memes](Resources/session2/memes.jpg)
 
 | Operator | Function       | Example        |
 | :---:    | :---           | :---           |
@@ -163,7 +163,7 @@ Now retype the plot command, but only type the first two letters and then hit th
 
 Another useful function of the console is to use the arrow keys to repeat or modify previous commands.
 
-## Quiz 1: Calculating channel flows
+## Exercise 1: Calculating channel flows
 Now it is your turn to play with the basic syntax of R and functionality of RStudio. The answers are at the end of this chapter.
 
 You need to measure the flow in a rural channel with a rectangular weir. You take three measurements: 125, 100, and 50mm. The width of the weir is 300mm. To calculate the flow, use a simplified version of the Kindsvater-Carter rectangular weir equation ([ISO 1438: 2017](https://www.iso.org/standard/66463.html)):
@@ -178,12 +178,12 @@ q = \frac{2}{3} C_d \sqrt{(2g)} bh^{(3/2)}
 - `b`$: Width of the weir [m].
 - `h`$: Measured head at the weir [m].
 
-The value for `C_d`$ is approximated because it depends on the dimensions of the weir. Follow [this link](https://www.engineeringexcelspreadsheets.com/tag/kindsvater-carter-formula/) for a detailed discussion on using this formula. The photo below shows what such a weir looks like in practice. 
+The value for `C_d`$ is approximated because it depends on the dimensions of the weir and the flow conditions. Follow [this link](https://www.engineeringexcelspreadsheets.com/tag/kindsvater-carter-formula/) for a detailed discussion on using this formula. The photo below shows what such a weir looks like in practice.
 
 {width: 100%}
 ![Example of a channel with a rectangular weir (Photo: Coliban Water).](resources/session2/weirplate.jpg)
 
-With this information, enter the first quiz and answer three questions.
+With this information, enter the first exercise and answer three questions.
 
 {exercise, id: channel, attempts: 10}
 You are processing measurements from a channel operator and need to calculate various flow rates. You can use the Kindsvater-Carter formula: 
@@ -204,9 +204,9 @@ Answer the quiz questions below with this information. Remember to use the arrow
 
 ? What is the flow in the channel in megalitres per day when the height `h = 100mm`$?
 
-A) 2.9045 ML
-b) 0.033 ML
-c) 121.02 ML
+A) 2.9045 ML/day
+b) 0.033 ML/day
+c) 121.02 ML/day
 
 ? What is the average flow for these three heights: 150mm, 136mm, 75mm in litres per second? Ensure that you only use the formula once by using a vector for the data.
 
@@ -220,7 +220,7 @@ a) `(2/3) * Cd * sqrt(2 * 9.81) * b * (0.05:0.50)^(3/2)`
 B) `(2/3) * Cd * sqrt(2 * 9.81) * b * ((50:500)/1000)^(3/2)`
 c) Repeat for each value of `h`$: `(2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)`
  
-You can find the answers in the last chapter of the syllabus. The code is available in the `channel.R` script in the `basicr` folder.
+You can find the answers in the `channel_flow.R` script in the `introduction` folder of your project folder.
 {/exercise}
 
 ## RStudio scripts and projects

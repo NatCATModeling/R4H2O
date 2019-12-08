@@ -18,10 +18,11 @@ odbcCloseAll()
 labdata$Date_Sampled <- as.Date(labdata$Date_Sampled)
 write_csv(labdata, "session2/labdata_dwh.csv")
 
+labdata <- read_csv("casestudy1/labdata_dwh.csv")
 ## Save laanecoorie data
 filter(labdata, System == "Laanecoorie" & Measure == "Turbidity") %>%
     select(-System, -Measure) %>%
-    write_csv("session2/turbidity_laanecoorie.csv")
+    write_csv("casestudy1/turbidity_laanecoorie.csv")
 
 ## Create fake data
 sample_points <- labdata %>%
@@ -72,27 +73,9 @@ gormsey$Result[sample(turbidity, 7)] <- round(runif(7, 5, 9), 2)
 summary(gormsey$Result[gormsey$Measure == "Turbidity"])
 
 # Remove extreme
-gormsey$Result[gormsey$Result == 210] <- 5
+gormsey$Result[gormsey$Result > 500] <- 5
 
-write_csv(gormsey, "casestudy1/gormsey.csv")
-
-## Sample Points
-sample_points <- tibble(Sample_Point = gormsey$Sample_Point,
-                        Zone = gormsey$Zone) %>%
-                  distinct()
-
-l <- length(unique(gormsey$Zone))
-zones <- tibble(Zone = unique(gormsey$Zone),
-                x = (0:(l - 1) %% 3) * 1000 + 1000,
-                y = floor(1:l / 3) * 1000 + 1000) 
-
-sample_points <- left_join(sample_points, zones) %>%
-    mutate(x = x + sample(-450:450, nrow(sample_points)),
-           y = y + sample(-450:450, nrow(sample_points)))
-
-write_csv(sample_points, "casestudy1/sample_points.csv")
-
-
+#write_csv(gormsey, "casestudy1/gormsey.csv")
 
 
 

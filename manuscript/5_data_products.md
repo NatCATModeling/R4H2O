@@ -13,10 +13,10 @@ The purpose of data products is to change reality positively. This change can be
 This section explains how to share the fruits of your labour with colleagues and other interested parties by generating reports that combine text and analysis through [literate programming](https://en.wikipedia.org/wiki/Literate_programming). Before we explain how to create reproducible reports, we delve into the data science workflow, with an excerpt from the book [Strategic Data Science](http://leanpub.com/strategic_data_science/c/r4h2o).
 
 ## Data Science Workflow
-The workflow for analytical projects starts with defining a problem that needs solving (Figure 6.1). The next step involves loading and transforming the data into a format that is suitable for the required analysis. The data science workflow contains a loop, the so-called data vortex. This vortex consists of three steps: exploration, modelling and reflection that are repeated until the problem is solved or is shown to be unsolvable.
+The workflow for analytical projects starts with defining a problem that needs solving (Figure 5.1). The next step involves loading and transforming the data into a format that is suitable for the required analysis. The data science workflow contains a loop, the so-called data vortex. This vortex consists of three steps: exploration, modelling and reflection that are repeated until the problem is solved or is shown to be unsolvable.
 
 {width: 80%, align: "middle"}
-![Figure 6.1: Data science workflow.](resources/session6/workflow.png)
+![Figure 5.1: Data science workflow.](resources/session6/workflow.png)
 
 ![The data science workflow.](https://www.youtube.com/watch?v=PHc6clrOxvs)
 
@@ -28,7 +28,7 @@ The problem definition opens with a description of the current situation and cle
 > The regulator for water quality has released a new guideline that lowers the maximum value for trihalomethanes (THMs) at the customer tap to 0.20 mg/l. This report assesses the historical performance of the Gormsey water system to evaluate the risk of non-compliance, assuming no operational changes are implemented.
 
 ### Prepare
-The available data needs to be loaded and wrangled into the required format before any analysis can take place. Influential data scientist Hadley Wickham refers to this process as tidying data, as discussed in the [previous chapter](#casestudy2). Anecdotally, this phase project could consume up to eighty per cent of the work effort, depending on the difference between the available data and the required data.
+The available data needs to be loaded and wrangled into the required format before any analysis can take place. Anecdotally, this phase of the project could consume up to eighty per cent of the work effort, depending on the difference between the available data and the required data. The [next chapter](#casestudy2) discusses how to clean data with Tidyverse functionality.
 
 Best practice in data science is to record every data set that is considered for the project in the final result. Describe every field used in the analysis to ensure the context in which the data was created is understood.
 
@@ -44,10 +44,10 @@ For our example case study, the analysis is a straightforward description of the
 #### Explore
 The best method to analyse data is through exploration and understand the relationship between the data and the reality it describes. Generating descriptive statistics such as averages, ranges, correlations, and so on, provides a quick insight into the data. Relying on numerical analysis alone can, however, deceive because very different sets of data can result in the same values. 
 
-Justin Matejka and George Fitzmaurice from *AutoDesk* demonstrated how very different sets of data can have almost the same [summary statistics](https://doi.org/10.1145/3025453.3025912) (Figure 6.2). Each of these six visualisations shows that these sets of data have very different patterns. When, however, analysing this data without visualising it, the mean values of `x` and `y`, and their correlations are almost precisely the same for all six subsets. In their paper, they presented an algorithm that generates every possible pattern with the same summary values, six of which are shown in the illustration.
+Justin Matejka and George Fitzmaurice from *AutoDesk* demonstrated how very different sets of data can have almost the same [summary statistics](https://doi.org/10.1145/3025453.3025912) (Figure 5.2). Each of these six visualisations shows that these sets of data have very different patterns. When, however, analysing this data without visualising it, the mean values of `x` and `y`, and their correlations are almost precisely the same for all six subsets. In their paper, they presented an algorithm that generates every possible pattern with the same summary values, six of which are shown in the illustration.
 
 {width: 80%}
-![Figure 6.2: Six patterns with very similar summary statistics.](resources/session6/datasaurus.png)
+![Figure 5.2: Six patterns with very similar summary statistics.](resources/session6/datasaurus.png)
 
 Another reason visualisations are essential to explore data is to reveal anomalies, such as spikes in time series or outliers. A sudden increase and decrease in physical measurements are often caused by issues with measurement or data transmission instead of actual changes in reality. These spikes need to be removed to ensure the analysis is reliable. Anomalies in social data such as surveys could be subjects that provide the same question to all answers, discussed in the previous chapter.
 
@@ -84,24 +84,16 @@ Writing a good data report enhances the reproducibility of the process by descri
 
 The topic of writing useful business reports is too broad to do justice within the narrow scope of this book. For those people that need help with their writing, data science can also assist. There are many great online writing tools to support authors not only with spelling but also grammar and idiom. These advanced spelling and grammar checkers use advanced text analysis tools to detect more than spelling mistakes and can help fine-tune a text utilizing data science. As English is my second language, I rely heavily on the Grammarly software to ensure it is free of apparent issues. However, even grammar checking with machine learning is not a perfect replacement for a human being who understands the meaning of the text.
 
-
 ## Reproducible Research
 RStudio has several options to create shareable outputs with people who don't necessarily understand R code. This section explains how to create reproducible research with the IDE through the use of the R Markdown approach.
 
-[Chapter four]{#tidyverse} showed how to use the *ggplot2* package to create aesthetic visualisations and save them to disk in a high resolution with the `ggave()` function. You can then load these images in your report to communicate the results. This approach works fine until you need to change some assumptions in your graphs, a new colour scheme or any other change. Every time you change the analysis, you will have to edit the report. This is not only an inefficient way to work, but it can also lead to error as you might forget to transpose one of the new results into the report.
+[Chapter four](#tidyverse) showed how to use the *ggplot2* package to create aesthetic visualisations and save them to disk in a high resolution with the `ggave()` function. You can then load these images in your report to communicate the results. This approach works fine until you need to change some assumptions in your graphs, a new colour scheme or any other change. Every time you change the analysis, you will have to edit the report. This is not only an inefficient way to work, but it can also lead to error as you might forget to transpose one of the new results into the report.
 
 The problem with this standard approach is that the data, the code are separate from the final data product. Reproducible research solves this problem by combining the data and the analysis with the final result.
 
 The most effective method to achieve full reproducibility is to use literate programming. Although many systems exist that at first instance might seem more user-friendly than writing code, point-and-click systems have severe limitations, and the results are often impossible to verify. The central concept of literate programming is that the data, the code and the output are logically linked so that when either the data or the code changes, the output will change as well. 
 
-Several methods are available in the R language to ensure analysis is reproducible. The most basic one is adding comments to the code. A comment is a statement that is not evaluated when running the code. In the R language, comments are indicated with one or more pound signs, also known as a number sign, hash or hashtag, at the start. For example:
-
-{format: r, line-numbers: false}
-```
-# Raw data from Qualtrics
-rawdata <- read_csv("casestudy2/Customer_Perception_USA.csv")
-customers <- rawdata[-1, ] # First row is redundant
-```
+Several methods are available in the R language to ensure analysis is reproducible. The most basic one is adding comments to the code. A comment is a statement that is not evaluated when running the code. In the R language, comments are indicated with one or more pound signs, also known as a number sign, hash or hashtag, at the start.
 
 Within any language, there are many ways to communicate the same message. Just like in natural language, data scientists use coding conventions to make a text readable. The developers of the Tidyverse have published a [style guide](https://style.tidyverse.org/) to assist data scientists with writing code that is easy to read and follow. In the developer's parlance, this is called elegant code.
 
@@ -123,7 +115,7 @@ When you click the *Knit* button, RStudio asks you to save the file and generate
 An R-Markdown document consists of three elements. The content between the three-dash lines is the header that specifies necessary information about the title, author, date and the output format (Figure 6.3).
 
 {width: 100%}
-![Figure 6.3: Template R Markdown document.](resources/session6/rmarkdown-example.png)
+![Figure 5.3: Template R Markdown document.](resources/session6/rmarkdown-example.png)
 
 All R code is written in 'chunks'. The three grave accents (backticks) indicate the start and end of a code chunk. The text between curly braces indicates the language and any options. By default, the code is included in the output. When you, for example, add the `echo = FALSE` option, the code is excluded. If you like not to show any code in the final document, then change the option in the first chunk, which sets the defaults. Many other options are available.
 
@@ -131,15 +123,13 @@ You can add additional chunks with the insert button. When you click it, you wil
 
 The third part of the document is the Markdown text. In Markdown, headers start with one or more has symbols, lists start with asterisks, and so on. Markdown uses these non-alphanumeric symbols to instruct the computer what the output should look like. 
 
-Lastly, you can embed the output of an R expression inside a line of text. For example, to write: "A total of 491 respondents completed the survey.", with data from the second [case study](#casestudy2) you can add the following line to your text:
+Lastly, you can embed the output of an R expression inside a line of text. For example, to write: "A total of 264 THM results appear in the data." To achieve this, you can embed R code within a sentence:
 
 ```
-A total of `r nrow(customers)` respondents completed the survey.
+A total of `r nrow(gormsey_thm)` THM results appear in the data.
 ```
 
-The expression is evaluated when you knit the document. This way, your numbers are always up to date with the latest data. Make sure you don't forget the lower case letter `r` to indicate that it needs to be evaluated. The line shown above will result in:
-
-> A total of 691 respondents completed the survey.
+The expression is evaluated when you knit the document. This way, your numbers are always up to date with the latest data. Make sure you don't forget the lower case letter `r` to indicate that it needs to be evaluated. 
 
 When working on a project, it is best first to write the code in a well-commented R script and copy this into a Markdown document after you complete the analysis. You can then add any explanatory text and so on to create reproducible research.
 
@@ -151,17 +141,19 @@ The output of data analysis is often expressed in tables. To create neat tables 
 
 The first two read the customer survey data and create a data frame with a count of each of the three cities. In this case, we convert the output of the `table()` function to a data frame with `as.data.frame()`.
 
-The third line changes the generic variable names assigned by R to something more meaningful. The last line calls the `kable()` function in the  *knitr* library.
+The third line changes the generic variable names assigned by R to something more meaningful. The last line calls the `kable()` function in the  *knitr* library. The `select()` function from the dplyr package in Tidyverse selects fields from a data frame.
 
 {format: r, line-numbers: false}
 ```
-customers <- read.csv("casestudy2/customers.csv")
-cities <- as.data.frame(table(customers$City))
-names(cities) <- c("City", "Respondents")
-knitr::kable(cities, caption = "Repspondent cites.")
+library(knitr)
+thm_fail <- subset(gormsey, Measure == "THMs" & Result > .25)
+kable(select(thm_fail, Date_Sampled, Zone, Result))
 ```
 
-Using a double colon is a quick way to use a function from a library that you have not explicitly loaded. Another option would be to first call `library(knitr)` and then the `kable()` function.
+|Date_Sampled |Zone   | Result|
+|:------------|:------|------:|
+|2017-08-02   |Merton |   0.27|
+|2017-09-06   |Merton |   0.28|
 
 ### Presenting numbers
 The numerical output of R functions often contains far to many decimals. Several functions are available to control the way R presents numbers. Firstly, you can set the default number of digits with the `options(digits = n)` function. Standard R is accurate up to about 15 decimals. If you need more precision, you need to use specialised packages, such as the [Rmpfr](https://cran.r-project.org/web/packages/Rmpfr) package. Run the following code to see the difference:
@@ -199,7 +191,7 @@ The `round()` function defaults to rounding to an integer. When using a negative
 The `kable()` function discussed in the previous section has a built-in rounding function. The `digits` option sets the number of digits for numerical output. If you apply a vector to this option then you can set separate digit numbers for each column.
 
 ### Export formats
-Rstudio can export R-Markdown to many standard formats. A standard file can be 'knitted' to an HTML file for websites, Word or PDF. To create a PDF, you need to have the LaTeX software installed on your computer. LaTeX is a powerful markup language, often used for publications in the formal and physical sciences.
+Rstudio can export R-Markdown to many standard formats. A standard file can be 'knitted' to an HTML file for websites, Word, PowerPoint or PDF. To create a PDF, you need to have the LaTeX software installed on your computer. LaTeX is a powerful markup language, often used for publications in the formal and physical sciences.
 
 ### Sharing results online
 If you like to share the results of your analysis with the world, then you can upload your HTML report to [RPubs](https://rpubs.com/). Please note the that documents on RPubs are publicly visible, so don't add any sensitive data.
@@ -222,20 +214,13 @@ Lastly, using the *Shiny* extension, R can b used to build online applications w
 ## Reproducible Research Assignment
 This chapter closes with an assignment using the data from the first or second case study.
 
-X> Create a short report in Word that assesses the Gormsey data to solve the problem statement at the start of this chapter, repeated below.
+X> Create a short PowerPoint presentation about the Gormsey data.
 
-### Problem Statement
-> The regulator for water quality has released a new guideline that lowers the maximum guideline value for trihalomethanes at the customer tap to 0.15 mg/l. This report assesses the historical performance of the Gormsey water system to evaluate the risk of non-compliance, assuming no operational changes are implemented.
-
-To undertake this task, you can follow this workflow:
-* Load the Gormsey water quality data (in the `casestudy1` folder).
-* Subset the data to only keep the THM results.
-* Count the number of samples per zone.
-* Visualise the data for each water quality zone and indicate the current and new limit.
-* Show a table of the exceedsances.
-
-X> If you like to boast or seek feedback, upload your solution to the [course community](https://community.leanpub.com/c/r4h2o).
-
-A possible solution is provided in the `casestudy1` folder in the course materials.
+1. Create a script that results in a PowerPoint presentation about the Gormsey data.
+2. Pick a story you like to tell about this data.
+3. Create a RMarkdown script that results in a Powerpoint presentation.
+4. Add an introduction.
+5. Explore the data.
+6. Share the story.
 
 In the last [case study](#casestudy3), we go back to the Tidyverse to analyse data from smart meters.

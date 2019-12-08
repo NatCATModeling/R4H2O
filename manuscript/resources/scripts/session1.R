@@ -34,7 +34,7 @@ d <- ggplot(distribution, aes(value)) +
     theme(plot.title = element_text(face="bold")) +
     ggtitle("Distribution")
 
-png("manuscript/resources/session1/stories.png", width = 2048, height = 1536)
+png("manuscript/resources/session1/stories.png", width = 2000, height = 1100)
 grid.arrange(c, d, r1, r2, ncol=2)
 dev.off()
 
