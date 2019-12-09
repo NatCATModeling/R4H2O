@@ -46,6 +46,8 @@ For a sample of 52 turbidity tests, the percentile thus lies between ranked resu
 
 Please note that there is no one correct way to calculate percentiles. The most suitable method depends on the distribution of the population and the purpose of the analysis. In this case study, the method is prescribed by the regulator.
 
+The `percentiles.R` script in the `casestudy1` folder compares the Weibull method with the results from Excel.
+
 ## Analysing the case study
 The sections below explain how to analyse an example data set with turbidity data for compliance with the Victorian Safe Drinking Water Regulations. The data and the code is available in the [GitHub](https://github.com/pprevos/R4H2O/tree/master/casestudy1) repository. Before we determine the relevant statistics, we need to load and explore the data. 
 
@@ -223,7 +225,7 @@ a * 2
 
 The second method uses the `filter()` function, which is more convenient than using square brackets. The first parameter in this function is the data frame, and the second parameter is the condition. Note that this method is tidier than the brackets method because we don't have to add the data frame name and `$` to the variables.
 
-![`filter(df, var == "B"`](resources/session3/filter.png)
+![`filter(df, var == "B")`](resources/session3/filter.png)
 
 You can use all the common relational operators to test for conditions:
 
@@ -309,6 +311,7 @@ In this particular case, the results are not very skewed, so all methods provide
 
 One last function to review is a convenient method to analyse subsets of the data. The `group_by()` function in the dplyr library splits the data into subsets. 
 
+{width: 100%}
 ![Grouping a data frame with `group_by(df, var)`.](resources/session3/grouping.png)
 
 We can use this special type of table to compute summary statistics for each group using the `summarise()` function. For example, to determine the maximum turbidity value for each water quality zone, we use:

@@ -170,7 +170,7 @@ print(a)
 This method will change the output of all calculations. To only change the current variable, use either of these three functions.
 
 {format: r, line-numbers: false}
-!```
+```
 print(a)
 
 round(a)
