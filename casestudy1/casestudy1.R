@@ -61,7 +61,8 @@ quantile(turbidity$Result, 0.95, type = 6) ## Weibull method
 
 ## GROUPING
 turb_zones <- group_by(turbidity, Zone)
-summarise(turb_zones, Maximum = max(Result))
+summarise(turb_zones, p95 = quantile(Result, 0.95, type = 6),
+          Maximum = max(Result))
 
 ## Visualise
 ggplot(turbidity, aes(Zone))

@@ -386,3 +386,15 @@ To close this day, we will do a mini hackathon.
 4. Add an introduction.
 5. Explore the data.
 6. Share the story.
+
+# Further Study
+:::::: {.columns}
+::: {.column}
+* [Tidyverse website](https://www.tidyverse.org/)
+* [RStudio website](https://resources.rstudio.com/) (webinars and cheat sheets)
+:::
+::: {.column}
+![[r4ds.had.co.nz](https://r4ds.had.co.nz/)](Images/r4ds.png)
+:::
+::::::
+                    
