@@ -9,7 +9,7 @@ Cd <- 0.6 # approximation
 ## Question 1
 h <- 100 / 1000 # Height in m
 q <- (2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)  # m3 / s
-q * 3600 * 24 / 1E3  # Convert to ML / day
+q
 
 ## Question 2
 h <- c(150, 136, 75) / 1000 # Create a vector
@@ -20,6 +20,9 @@ mean(q) * 1000 # Convert to l/s
 h <- (50:500) / 1000 # Create a vector
 q <- (2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)
 q
+
+
+(2/3) * Cd * sqrt(2 * 9.81) * b * h^3/2
 
 ## Enhanced code
 plot(h, q, type = "l", 

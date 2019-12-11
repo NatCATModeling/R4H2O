@@ -12,3 +12,5 @@ This repository contains the following folders:
 * `manuscript`   : Course syllabus (best viewed through [LeanPub course](https://leanpub.com/c/R4H2O)).
 * `cheatsheet`   : Cheat sheet for the functions needed to complete the exercises.
 * `presentations`: Slides.
+
+This course is released under a [Creative Commons Attribution-ShareAlike 4.0 International](LICENSE.md).

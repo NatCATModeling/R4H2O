@@ -13,9 +13,9 @@ names(turbidity) ## Variable names
 
 dim(turbidity) ## Dimensions
 
-nrow(turbidity) ## Number of columns
+nrow(turbidity) ## Number of rows (observations)
 
-ncol(turbidity) ## Number of rows
+ncol(turbidity) ## Number of columns (variables)
 
 glimpse(turbidity) ## Show the structure of the data frame
 

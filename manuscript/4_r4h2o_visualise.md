@@ -136,7 +136,15 @@ ggplot(turbidity, aes(Date_Sampled, Result, col = Zone)) +
 
 This code is the same as the first version but with the option `col = Zone` added. This example is not an optimal use of this functionality because there are too many lines, which are hard to read. We will fix this when we discuss facets. 
 
-The ggplot functionality also include functions to modify the colour palettes, which is not further explained in this course.
+The ggplot functionality also include functions to modify the colour palettes. Each of these functions starts with `scale_color_`. The ggplot website explains each of these functions in detail. One of these palettes replicates the colorbrewer website. The `scale_color_brewer()` function enables the colorbrewer system of visualisation colours. This function includes the three palette types: sequential, diverging and qualitative. Each of these palettes has a name, which you can see when you use the following code (or search for it in Google Images):
+
+{format: r, line-numbers: false}
+```
+library(RColorBrewer)
+display.brewer.all()
+```
+
+
 
 ### Geometries
 The ggplot2 library has a lot of geometries that can be used to visualise the data. As mentioned previously, these geometries need to be chosen so they tell the story you want to convey to the data user.

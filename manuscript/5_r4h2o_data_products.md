@@ -30,9 +30,9 @@ The problem definition opens with a description of the current situation and cle
 ### Prepare
 The available data needs to be loaded and wrangled into the required format before any analysis can take place. Anecdotally, this phase of the project could consume up to eighty per cent of the work effort, depending on the difference between the available data and the required data. The [next chapter](#casestudy2) discusses how to clean data with Tidyverse functionality.
 
-Best practice in data science is to record every data set that is considered for the project in the final result. Describe every field used in the analysis to ensure the context in which the data was created is understood.
+Best practice in data science is to describe every field used in the analysis to ensure the context in which the data was created is understood.
 
-For the problem statement above, we have the Gormsey data that was discussed previously, which is already a tidy data set. Our report would open with a description of this data and how it was collected.
+For the problem statement above, we have the Gormsey data that was discussed previously, which is already a tidy data set. Our report opens with a description of this data and how it was collected.
 
 ### Understand
 Once the data is available in a tidy format, the process of understanding the data can commence. The analytical phase consists of a three-stage loop, the data vortex, that is repeated until the required results are achieved or evidence becomes available that the objectives cannot be met. These three stages are: explore, model and reflect.

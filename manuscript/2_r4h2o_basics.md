@@ -198,15 +198,17 @@ The gravity constant `g = 9.81 m/s^2`$.
 
 The width of the weir `b = 0.6m`$.
 
-One megalitre is one million litres (1000 cubic metres). This is a unit of volume measurement commonly used in Australia.
+T> One megalitre is one million litres (1000 cubic metres). This is a unit of volume measurement commonly used in Australia.
+
+T> Start by defining the variables, then enter the formula into R. Use the up and down arrows to go back to previous lines.
 
 Answer the quiz questions below with this information. Remember to use the arrow button to retrieve previous commands. 
 
-? What is the flow in the channel in megalitres per day when the height `h = 100mm`$?
+? What is the flow in the channel in m^3^/s when the height `h = 100mm`$?
 
-A) 2.9045 ML/day
-b) 0.033 ML/day
-c) 121.02 ML/day
+A) 0.034 m^3^/s.
+b) 1063.067 m^3^/s.
+c) 0.0005 m^3^/s.
 
 ? What is the average flow for these three heights: 150mm, 136mm, 75mm in litres per second? Ensure that you only use the formula once by using a vector for the data.
 
@@ -220,7 +222,7 @@ a) `(2/3) * Cd * sqrt(2 * 9.81) * b * (0.05:0.50)^(3/2)`
 B) `(2/3) * Cd * sqrt(2 * 9.81) * b * ((50:500)/1000)^(3/2)`
 c) Repeat for each value of `h`$: `(2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)`
  
-You can find the answers in the `channel_flow.R` script in the `introduction` folder of your project folder.
+You can find the answers in the `channel_flow.R` script in the `introduction` folder of your project.
 
 You can go [back to the course](#afterex1).
 {/exercise}

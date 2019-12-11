@@ -38,7 +38,7 @@ event <- paste0("https://leanpub.com/c/R4H2O/c/", params$coupon)
 
 # Resources
 ![Register to get access to the on-line syllabus: `r event`
-](../manuscript/resources/session0/r4h2o-logo.png)
+](../manuscript/resources/cover/r4h2o-logo.png)
 
 # Principles of Data Science
 ![](../manuscript/resources/session0/StrategicDataScience.png)
@@ -377,21 +377,23 @@ Data products:
 :::
 ::::::
 
+# RMarkdown Syntax
+![RMarkdown syntax example](../manuscript/resources/session6/rmarkdown-example.png)
+
 # Mini Hackathon
 To close this day, we will do a mini hackathon.
 
 1. Create a script that results in a PowerPoint presentation about the Gormsey data.
 2. Pick a story you like to tell about this data.
 3. Create a RMarkdown script that results in a Powerpoint presentation.
-4. Add an introduction.
-5. Explore the data.
-6. Share the story.
+    - Add an introduction.
+    - Explore the data.
+    - Share the story.
 
 # Further Study
 :::::: {.columns}
 ::: {.column}
-* [Tidyverse website](https://www.tidyverse.org/)
-* [RStudio website](https://resources.rstudio.com/) (webinars and cheat sheets)
+![tidyverse.org](Images/tidyverse.png)
 :::
 ::: {.column}
 ![[r4ds.had.co.nz](https://r4ds.had.co.nz/)](Images/r4ds.png)

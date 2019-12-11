@@ -1,0 +1,14 @@
+\frametitle{}
+\begin{columns}[t]
+      \begin{column}{0.33\linewidth}
+        \input{fourthcolumn}
+      \end{column}
+
+      \begin{column}{0.33\linewidth}
+        \input{fifthcolumn}
+      \end{column}
+
+      \begin{column}{0.33\linewidth}
+        \input{sixthcolumn}
+      \end{column}
+    \end{columns}

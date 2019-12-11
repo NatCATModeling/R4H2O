@@ -9,7 +9,6 @@ output:
 ```{r setup, include=FALSE}
 library(knitr)
 opts_chunk$set(echo = FALSE, message = FALSE, dpi = 300)
-
 library(tidyverse)
 turbidity <- read_csv("turbidity_laanecoorie.csv")
 ```
@@ -35,7 +34,7 @@ by_zone <- group_by(turbidity, Zone)
 turbidity_summary <- summarise(by_zone, Min = min(Result),
                                Mean = mean(Result),
                                p95 = quantile(Result, .95, type = 6))
-kable(turbidity_summary, digits = 2)
+kable(turbidity_summary, digits = 2, caption = "Summary of turbidity results.")
 ```
 
 # Turbidity Trends
