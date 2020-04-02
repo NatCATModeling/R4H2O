@@ -1,6 +1,6 @@
 # R for Water Professionals {#introduction}
 {width: "100%"}
-![](resources/session0/r4h2o-logo.png)
+![](resources/cover/r4h2o-logo.png)
 
 Managing reliable water services requires not only a sufficient volume of water but also significant amounts of data. Water professionals continuously measure the flow and quality of water and asses how customers perceive their service. Water utilities are awash, or even flooded with data. Data professionals use data pipelines and data lakes and make data flow from one place to another.
 
@@ -12,7 +12,7 @@ This course introduces water utility professionals to the [R language](https://e
 
 The content of this course represents a steep learning curve because we take a deep dive into the functionalities of the R language. Just keep in mind: 
 
->The steeper the learning curve, the larger to payoff.
+> The steeper the learning curve, the larger to payoff.
 
 This workshop is not an exhaustive introduction into data science programming, but a teaser to inspire water professionals to ditch their spreadsheets and instead write code to analyse data. The best way to learn to solve problems with computer code is to start with practical examples and learn the principles as you progress through ever more complex cases.
 
@@ -118,7 +118,12 @@ You can download the documents by clicking on the 'clone or download' button and
 For those using the cloud version of RStudio, click on the arrow next to the 'New Project' button and select 'New Project from GitHub Repo'. Copy the URL ([`https://github.com/pprevos/r4h2o/`](https://github.com/pprevos/r4h2o/)) to the text field and hit enter. After a little while, RStudio opens the project.
 
 The repository contains several folders:
-* The `manuscript` folder source files of the course text, images and videos.
-* The `introduction` and case study folders contain the data and code for each of the chapters.
+* `introduction` : Introduction to the R language.
+* `casestudy1`   : Case study data and files.
+* `casestudy2`   : Case study data and files.
+* `casestudy3`   : Case study data and files.
+* `manuscript`   : Course syllabus (best viewed through the [LeanPub website](https://leanpub.com/c/R4H2O)).
+* `cheatsheet`   : Cheat sheet for the functions needed to complete the exercises.
+* `presentations`: Slides.
 
 The [next chapter](#datascience) introduces the principles of data science and presents a framework for good data science.

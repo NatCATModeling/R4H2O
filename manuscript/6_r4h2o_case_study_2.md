@@ -26,8 +26,7 @@ The first page introduced the research and asked respondents to provide their co
 
 The second page consisted of questions about the level of involvement respondents have with tap water. These questions use the Personal Involvement Inventory developed by Judity Zaichkowsky ([1994](https://www.sfu.ca/~zaichkow/JA%252094.pdf)). The involvement items close with an open text item asking customers: "If you have any additional comments about your views on tap water, please enter them below". 
 
-The Personal Involvement Inventory consists of two dimensions:  cognitive involvement (importance, relevance, meaning, value and need) and affective involvement 
-(involvement, fascination, appeal, excitement and interest).
+The Personal Involvement Inventory consists of two dimensions: cognitive involvement (importance, relevance, meaning, value and need) and affective involvement (involvement, fascination, appeal, excitement and interest).
 
 The involvement part of the survey uses a semantic differential scale. This method requires respondents to choose on a scale between two antonyms (figure 5.1). This type of survey measures the meaning that people attach to a concept, such as a product or service. The items were presented in a random order to each respondent. The words on the right indicate a high level of involvement. Fiver questions have a reversed polarity, which means that the left side indicates a high level of involvement.
 
@@ -156,7 +155,7 @@ The `left_join` function finds the matching fields in the two sets and then merg
 This function keeps all the values in the left data set, while linking. The Tidyverse has several other [join functions](https://dplyr.tidyverse.org/reference/join.html) that match values differently (Figure 5.2). 
 
 {width: 80%}
-![Figure 5.2: Join functions in *ddlyr*.](resources/session5/dplyr_join.png).
+!![Figure 5.2: Join functions in *ddlyr*.](resources/session5/dplyr_join.png).
 
 ### Code structure
 This sequence of commands creates a clean data set for further analysis. This code contains a lot of repetition because we change the `customers` variable several times in a sequence. In a spreadsheet, these steps are often joined into one formula:

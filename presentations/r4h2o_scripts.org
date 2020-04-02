@@ -1,0 +1,12 @@
+#+TITLE: R4H2O Screencast Scripts
+
+* RStudio Cloud and RStudio desktop
+- Process to install course files on cloud
+- Process to install course files on desktop
+* Introduction to R Studio
+- Parts of the screen
+- 
+* Chanel Flow
+* Case Study 1: Analysis
+* Case Study 2: Visualisation
+* Case Study 1: Powerpoint

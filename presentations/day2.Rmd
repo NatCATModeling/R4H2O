@@ -1,0 +1,50 @@
+---
+title: 'R4H2O: R for Water Professionals'
+author: Dr Peter Prevos
+output: beamer_presentation
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure]{labelformat=empty}
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(tidy.opts=list(width.cutoff=40), echo=TRUE)
+```
+
+# Day 1 Recap
+
+1. Data science principles
+2. Basic R Code
+3. Tidyverse
+    - readr (read csv file)
+    - dplyer (filter, group and summarise)
+    - ggplot (visualise)
+4. RMarkdown
+    
+# Case Study 2: Customer Perception
+
+# Customer Involvement
+::::::{.columns}
+:::{.column}
+The relevance a product or service has in somebody's life.
+
+*Personal Involvement Index* (PII):
+
+- Cognitive
+- Affective
+:::
+:::{.column}
+![Customer involvement survey (semantic differential scale.)](../manuscript/resources/session5/semantic-differential.png)
+:::
+::::::
+
+## Tidy Data
+
+## Cleaning Data Programatically
+
+
+
+# Case Study 3: Digital Metering Data

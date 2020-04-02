@@ -102,7 +102,9 @@ If we don't write anything between the parenthesis, then ggplot will create simp
 
 This function creates a simple grey plot because we only should add colour to expresses data or complying with a style guide. You can force *ggplot* to use colour by using `geom_bar(fill = "blue")`, or any other colour you might fancy.
 
-R understands colours in HTML [hex codes](https://www.w3schools.com/colors/colors_picker.asp), or one of the many colour names available in R. The [University of Columbia](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) hosts a useful PDF document with a list of the available colours. Which one is your favourite?
+R understands colours in HTML [hex codes](https://www.w3schools.com/colors/colors_picker.asp). These codes consist of three hexadecimal numbers (ranging from 00 to FF) for red, green and blue. The hex code `#FF0000` results in a purely red colour, `#00FF00` is green and `#78417A` is a deep purple.
+
+Colours also have names. All the basic colours, such as red, green and blue, and many more subtle colours can be named. The [University of Columbia](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) hosts a useful PDF document with a list of the available colours. Which one is your favourite?
 
 X> Add your favourite colour to the bar plot.
 
@@ -110,16 +112,18 @@ The paradigm of maximising the data-pixel ratio suggests that colour should be u
 
 The minimum amount of colour depends on the narrative you want to convey and the type of visualisation. Cartography often uses colour to communicate its message. One of the problems that plagued mathematicians for centuries is how many colours we need as a minimum to colour every area on a map, without two bordering regions with the same colour. Cartographers know from practical experience that this number is four, but mathematical proof only came in a few decades ago.
 
-Besides minimising the number of colours, we also need to know which colours to use. Cartographers Mark Harrower and Cynthia Brewer developed the Color Brewer system ([colorbrewer2.org](http://colorbrewer2.org/)) to help designers of visualisations select a good scheme. These colour schemes are designed for choropleth maps, but can also be used for non-spatial visualisations. The Color Brewer system consists of three types of colour palates: sequential, diverging and qualitative (Figure 4.8). 
+Besides minimising the number of colours, we also need to know which colours to use. Cartographers Mark Harrower and Cynthia Brewer developed the Color Brewer system ([colorbrewer2.org](http://colorbrewer2.org/)) to help designers of visualisations select a good scheme. These colour schemes are designed for choropleth maps, but can also be used for non-spatial visualisations. The Color Brewer system consists of three types of colour palettes: sequential, diverging and qualitative (Figure 4.8). 
 
 {width: 50%}
-![Figure 4.8: Types of colour palates.](resources/session4/ColorBrewer.png)
+![Figure 4.8: Types of colour palettes.](resources/session4/ColorBrewer.png)
 
 Sequential schemes contain a series of colours with increasing strength. These colour schemes are most suitable to visualise magnitude from low to high, with light colours usually for low data values and dark colours for high values.
 
-Diverging colours are used to visualise a deviation from a norm, such as droughts or floods or adherence to a budget. Green, yellow and red are the most common use of this type of palate as business reports are filled with traffic lights to report progress. This type of reporting helps managers to focus on problem areas so they can discuss actions to improve future performance. A note of caution is that this technique does not work for men with green/red colour blindness. This condition is not a problem with real traffic lights as the order of the lights is always the same. However, on a business report, the colours will all look the same to roughly eight per cent of men with this condition.
+Diverging colours are used to visualise a deviation from a norm, such as droughts or floods or adherence to a budget. Green, yellow and red are the most common use of this type of palette as business reports are filled with traffic lights to report progress. This type of reporting helps managers to focus on problem areas so they can discuss actions to improve future performance. A note of caution is that this technique does not work for men with green/red colour blindness. This condition is not a problem with real traffic lights as the order of the lights is always the same. However, on a business report, the colours will all look the same to roughly eight per cent of men with this condition.
 
-Qualitative colours are groups of colours that are aesthetically compatible but without a logical relationship between them based on the data. These palates can express qualitative values such as categories. 
+Qualitative colours are groups of colours that are aesthetically compatible but without a logical relationship between them based on the data. These palettes can express qualitative values such as categories. 
+
+The R language has many packages that define specific colour pallets. Emil Hvitfeldt has curated a collection of [R colour palettes](https://github.com/EmilHvitfeldt/r-color-palettes).
 
 The *ggplot* function always takes a data frame as its first option, as shown in the previous examples. The aesthetic mapping is listed between parenthesis and defines which variables in the data frame are visualised.
 
@@ -136,15 +140,19 @@ ggplot(turbidity, aes(Date_Sampled, Result, col = Zone)) +
 
 This code is the same as the first version but with the option `col = Zone` added. This example is not an optimal use of this functionality because there are too many lines, which are hard to read. We will fix this when we discuss facets. 
 
-The ggplot functionality also include functions to modify the colour palettes. Each of these functions starts with `scale_color_`. The ggplot website explains each of these functions in detail. One of these palettes replicates the colorbrewer website. The `scale_color_brewer()` function enables the colorbrewer system of visualisation colours. This function includes the three palette types: sequential, diverging and qualitative. Each of these palettes has a name, which you can see when you use the following code (or search for it in Google Images):
+The ggplot functionality also include functions to modify the colour palettes. Each of these functions starts with `scale_color_`. The ggplot website explains each of these functions in detail. One of these palettes replicates the colorbrewer website. The `scale_color_brewer()` function enables the colorbrewer system of visualisation colours. This function includes the three palette types: sequential, diverging and qualitative. Each of these palettes has a name, which you can see when you use the following code (or search for it in Google Images).
+
+The example below uses the colour brewer palette function to change the lines. The type is qualitative because the colours don't indicate a value or a deviation but sampling localities. 
 
 {format: r, line-numbers: false}
 ```
 library(RColorBrewer)
 display.brewer.all()
+
+ggplot(turbidity, aes(Date_Sampled, Result, col = Zone)) + 
+    geom_line() + 
+    scale_color_brewer(type = "qual", palette = 2)
 ```
-
-
 
 ### Geometries
 The ggplot2 library has a lot of geometries that can be used to visualise the data. As mentioned previously, these geometries need to be chosen so they tell the story you want to convey to the data user.

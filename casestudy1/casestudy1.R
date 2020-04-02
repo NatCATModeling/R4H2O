@@ -77,6 +77,10 @@ ggplot(turbidity, aes(Date_Sampled, Result, col = Zone)) +
 ggsave("manuscript/resources/session4/time_series.png", width = 5, height = 3)
 
 
+ggplot(turbidity, aes(Date_Sampled, Result, col = Zone)) + 
+    geom_line() + 
+    scale_color_brewer(type = "qual", palette = 2)
+
 ggplot(turbidity, aes(Zone, Result, fill = Zone)) + 
     geom_boxplot()
 ggsave("manuscript/resources/session4/boxplot.png", width = 5, height = 3)

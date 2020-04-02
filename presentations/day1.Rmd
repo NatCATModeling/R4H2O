@@ -1,12 +1,14 @@
 ---
-title: 'R4H2O: R for Water Professionals'
+title: '$R^4$H\textsubscript{2}O: R for Water Professionals'
 author: Dr Peter Prevos
-output: beamer_presentation
-header-includes:
-- \usepackage{caption}
-- \captionsetup[figure]{labelformat=empty}
+#Needs LaTeX installed on your computer
+output:
+  beamer_presentation:
+  theme: "Malmoe"
+  fonttheme: "structurebold"
+
 params: 
-  coupon: x
+  coupon: waterra
 editor_options:
   chunk_output_type: console
 ---
@@ -37,8 +39,7 @@ event <- paste0("https://leanpub.com/c/R4H2O/c/", params$coupon)
 ::::::
 
 # Resources
-![Register to get access to the on-line syllabus: `r event`
-](../manuscript/resources/cover/r4h2o-logo.png)
+![Register to get access to the on-line syllabus: `r event`](../manuscript/resources/cover/r4h2o-logo.png)
 
 # Principles of Data Science
 ![](../manuscript/resources/session0/StrategicDataScience.png)
@@ -121,10 +122,8 @@ abline(v = 0, col = "grey")
 :::
 ::::::
 
-
 # R is Meme-Proof
 ![Aritmetic memes.](../manuscript/resources/session2/memes.jpg)
-
 
 # Finding Help
 :::::: {.columns}
@@ -200,23 +199,23 @@ Guidance document:
 :::
 ::::::
 
-
 # Percentiles
+::::::{.columns}
+:::{.column}
 1. The data are placed in ascending order: $y_1, y_2, \ldots y_n$.
 2. Calculate the rank of the required percentile
     - Weibull: $r = p(n + 1)$
     - Excel: $r = 1 + p(n - 1)$
 3. Interpolate between adjacent numbers: 
 $X_p=(1-r_{frac})Y_{r_{int}}+r_{frac}Y_{r_{int+1}}$
-
-
-
-# Percentile example
+:::
+:::{.column}
 ```{r, echo = FALSE, fig.cap="Explore the `percentiles.R` script in the `casestudy1` folder."}
 ## Load and execute
 source("../casestudy1/percentiles.R")
 ```
-
+:::
+::::::
 
 # The Tidyverse
 :::::: {.columns}
@@ -234,8 +233,6 @@ Load the `casestudy1.R` script in the `casestudy1` folder.
 ![](Images/tidyverse.png)
 :::
 ::::::
-
-
 
 # Data frames or 'tibbles'
 :::::: {.columns}
@@ -256,29 +253,23 @@ dataframe <- read_csv(filename)
 :::
 ::::::
 
-
 # Filter a data frame
 ```{r, eval=FALSE}
 filter(df, var == "B")
 ```
-
 ![](../manuscript/resources/session3/filter.png)
-
 
 # Grouping
 ```{r, eval=FALSE}
 group_by(df, var)
 ```
-
 ![](../manuscript/resources/session3/grouping.png)
-
 
 # Exercise
 * Load the CSV file for the Gormsey system in the `casestudy1` folder.
 * Explore the data.
 * Answer the questions in Exercise 2 in your syllabus.
 * You can cheat by opening the `gormsey_quiz.R` script.
-
 
 # Data Visualisation
 ::::::{.columns}
@@ -357,6 +348,30 @@ read_csv("../casestudy1/gormsey.csv") %>%
 
 # Data Science Workflow
 ![Data  science wokflow](../manuscript/resources/session6/workflow.png)
+
+# Data Products
+
+::::::{.columns}
+:::{.column}
+Static
+
+- Word documents
+- PowerPoint presentaions
+- Web pages
+
+Dynamic
+
+- Shiny application
+- Shiny presentation
+
+Share
+- RStudio Connect
+- Your own server
+:::
+:::{.column}
+![](Images/rstudio_connect.jpg)
+:::
+::::::
 
 # RMarkdown
 ::::::{.columns}
