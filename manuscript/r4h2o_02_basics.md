@@ -68,10 +68,10 @@ If you use the desktop version of RStudio, then you can download the documents b
 
 For those using the cloud version of RStudio, click on the arrow next to the 'New Project' button and select 'New Project from GitHub Repo'. Copy the URL ([`https://github.com/pprevos/r4h2o/`](https://github.com/pprevos/r4h2o/)) to the text field and hit enter. RStudio copies the files from GitHub, which takes a minute.
 
-When you open RStudio for the first time, the window is divided into three panes, each with various tabs. The left panel is the console. The top-right pane shows the system environment and the one below that shows a list of files and folders (Figure 2.1).
+When you open RStudio for the first time, the window is divided into three panes, each with various tabs. The left panel is the console. The top-right pane shows the system environment and the one below that shows a list of files and folders (Figure 2.2).
 
 {width: 100%}
-![Figure 2.1: RStudio default screen layout](resources/session2/rstudio.png)
+![Figure 2.2: RStudio default screen layout](resources/02_basics/rstudio.png)
 
 You can change the default fonts and colours in the *Tools > Global Options > Appearance* menu. Most users prefer a dark theme with light text because it is more gentle on the eyes than the stark white default background. You can also set default font size and magnification to your liking.
 
@@ -111,9 +111,9 @@ You should notice a few things when you start typing:
 * The variables you declared (`x`, `y` and `a`) are shown in the Environment window.
 * The plot appears in a tab of the bottom-right window.
 
-In its most basic form, the R console is a calculator that uses arithmetic operators as listed in the table below. R is meme-proof because it knows the correct answer to the many arithmetic memes distributed on social media.
+In its most basic form, the R console is a calculator that uses arithmetic operators as listed in the table below. R is meme-proof because it knows the correct answer to the many arithmetic memes distributed on social media (Figure 2.3).
 
-![Arithmetic memes](resources/02_basics/memes.jpg)
+![Figue 2.3: Arithmetic Facebook memes.](resources/02_basics/memes.jpg)
 
 | Operator | Function       | Example        |
 | :---:    | :---           | :---           |
@@ -213,8 +213,8 @@ The following sections in the help function provide background information and l
 
 X> Open the help file for the `plot()` function. How do you plot a function with both points and lines?
 
-## Exercise 1: Calculating channel flows
-Now it is your turn to play with R and functionality of RStudio. You need to measure the flow in a rural channel with a rectangular weir. Measuring flows in open channels is usually done by measuring the depth of the water at a section with a standard profile. A mathematical relationship determines the volume of water the passes through the channel.
+## Quiz 1: Calculating channel flows
+Now it is your turn to play with R and functionality of RStudio. You need to measure the flow in a rural channel with a rectangular weir (figure 2.4). Measuring flows in open channels is usually done by measuring the depth of the water at a section with a standard profile. A mathematical relationship determines the volume of water the passes through the channel.
 
 The width of the weir is 300mm, and you measure a height of 100mm. To calculate the flow, you can use a simplified version of the Kindsvater-Carter rectangular weir equation ([ISO 1438: 2017](https://www.iso.org/standard/66463.html)):
 
@@ -233,11 +233,12 @@ The value for `C_d`$ is approximated because it depends on the dimensions of the
 Note that the dimensions in the formula are all in metres, while the measurements are in mm.
 
 {width: 100%}
-![Example of a channel with a rectangular weir (Photo: Coliban Water).](resources/02_basics/weirplate.jpg)
+![Figure 2.4: Example of a channel with a rectangular weir (Photo: Coliban Water).](resources/02_basics/weirplate.jpg)
 
 With this information, open the first exercise and answer three questions.
 
-{exercise, id: channel, attempts: 10}
+{quiz, id: channel}
+
 You are processing measurements from a channel operator and need to calculate various flow rates. You can use the Kindsvater-Carter formula: 
 
 ```$
