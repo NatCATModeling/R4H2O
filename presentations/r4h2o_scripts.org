@@ -5,7 +5,7 @@
 - Process to install course files on desktop
 * Introduction to R Studio
 - Parts of the screen
-- 
+  - 
 * Chanel Flow
 * Case Study 1: Analysis
 * Case Study 2: Visualisation
