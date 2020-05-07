@@ -285,4 +285,4 @@ c) Repeat for each value of `h`$: `(2/3) * Cd * sqrt(2 * 9.81) * b * h^(3/2)`
 If you are stuck, you can find the answers in the `channel_flow.R` file in the `basics` folder of your R project.
 
 After you complete the quiz, you can go [back to the course](#tidyverse).
-{/exercise}
+{/quiz}
