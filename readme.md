@@ -1,4 +1,4 @@
-# `R^4H2_O`$ : Data Science for Water Utility Professionals
+# R<sup>4</sup>H<sub>2</sub>O: Data Science for Water Utility Professionals
 
 ![](manuscript/resources/00_introduction/r4h2o_logo.jpg)
 
