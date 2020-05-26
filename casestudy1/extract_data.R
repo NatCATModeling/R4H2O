@@ -1,93 +1,77 @@
-## Data extracted from Coliban Water data warehouse for session 2 case study
+## Data extracted from Coliban Water data warehouse for case study 1
 
 ## Libraries
 library(RODBC)
 library(tidyverse)
+library(stringr)
 
-## Extract from Data Warehouse
+## Extract laboratory data from database
 dwh <- odbcDriverConnect("driver={SQL Server};server=DWH;DATABASE=CW_DataWarehouse;trusted_connection=true")
-labdata <- sqlQuery(dwh, "SELECT Sample_No, Date_Sampled, Subsite_Code AS Sample_Point, 
+labdata <- sqlQuery(dwh, "SELECT Sample_No, Date_Sampled AS Date, Subsite_Code AS Sample_Point, 
                                 System, Zone, Measure, Result, Units  
                                 FROM WSL_retic_Sample_results 
                                 WHERE Subsite_Type='Customer Tap' AND
                                     Measure IN ('Turbidity', 'THMs', 'E Coli') AND
                                     Date_sampled>='2017-01-01' AND 
                                     Date_sampled<='2018-12-31' AND
-                                    System IN ('Laanecoorie', 'Bendigo')")
+                                    System IN ('Bendigo')")
 odbcCloseAll()
-labdata$Date_Sampled <- as.Date(labdata$Date_Sampled)
-write_csv(labdata, "session2/labdata_dwh.csv")
+labdata$Date <- as.Date(labdata$Date, tz = "")
 
-labdata <- read_csv("casestudy1/labdata_dwh.csv")
-## Save laanecoorie data
-filter(labdata, System == "Laanecoorie" & Measure == "Turbidity") %>%
-    select(-System, -Measure) %>%
-    write_csv("casestudy1/turbidity_laanecoorie.csv")
-
-## Create fake data
+## List of sample points per zone
 sample_points <- labdata %>%
-    filter(System == "Bendigo") %>%
     distinct(Sample_Point, .keep_all = TRUE) %>%
     select(Zone, Sample_Point)
 
-g_zones <- tibble(Zone = unique(sample_points$Zone),
-                  Zone_new = c("Southwold",
-                               "Wakefield",
-                               "Tarnstead",
-                               "Blancathey",
-                               "Swadlincote",
-                               "Merton",
-                               "Snake's Canyon",
-                               "Bellmoral",
-                               "Paethsmouth",
-                               "Pontybridge",
-                               "Strathmore"))
+## Assign fictitious town names to randomised zones
+towns <- tibble(Zone = sample(unique(sample_points$Zone), 
+                                length(unique(sample_points$Zone))),
+                  Town = c("Southwold",
+                           "Wakefield",
+                           "Tarnstead",
+                           "Blancathey",
+                           "Swadlincote",
+                           "Merton",
+                           "Snake's Canyon",
+                           "Bellmoral",
+                           "Paethsmouth",
+                           "Pontybridge",
+                           "Strathmore"))
 
+## Assign random sample point names
 g_sample_points <- tibble(Sample_Point = unique(sample_points$Sample_Point),
-                          Sample_Point_new = paste0("S", 
-                                                    sample(1E4:2E4, 
-                                                           length(unique(sample_points$Sample_Point)), 
-                                                           replace = FALSE)))
+                          Sample_Point_new = sample(1E4:2E4, length(unique(sample_points$Sample_Point)), replace = FALSE))
 
+## Collate the data
 gormsey <- sample_points %>% 
-    left_join(g_zones) %>% 
+    left_join(towns) %>% 
     left_join(g_sample_points) %>%
-    select(Sample_Point, Zone_new, Sample_Point_new) %>%
-    right_join(filter(labdata, System == "Bendigo")) %>%
-    select(Sample_No, Date_Sampled, Sample_Point = Sample_Point_new, Zone = Zone_new,
-           Measure, Result, Units)
+    select(Sample_Point, Town, Sample_Point_new) %>%
+    right_join(labdata) %>%
+    select(Sample_No, Date, Sample_Point = Sample_Point_new, Town,
+           Measure, Result, Units) %>%
+    mutate(Sample_No = sample(6E5:7E5, nrow(labdata)),
+           Sample_Point = paste0(toupper(str_sub(Town, 1, 2)), "_", Sample_Point),
+           Measure = str_replace_all(Measure, "E Coli", "E. coli"),
+           Measure = str_replace_all(Measure, "THMs", "THM"))
 
-# Modify data
+glimpse(gormsey)
+
+## Modify data to make it more interesting
 set.seed(1969)
 
-e.coli <- which(gormsey$Measure == "E Coli")
-gormsey$Result[sample(e.coli, 2)] <- sample(1:5, 2)
-summary(gormsey$Result[gormsey$Measure == "E Coli"])
+e.coli <- which(gormsey$Measure == "E. coli")
+gormsey$Result[sample(e.coli, 3)] <- sample(1:5, 3)
+summary(gormsey$Result[gormsey$Measure == "E. coli"])
 
-thms <- which(gormsey$Measure == "THMs" & gormsey$Zone == "Merton")
-gormsey$Result[sample(thms, 2)] <- round(runif(2, 0.21, 0.50), 2)
-summary(gormsey$Result[gormsey$Measure == "THMs"])
+thms <- which(gormsey$Measure == "THM" & gormsey$Town %in% c("Merton", "Southwold"))
+gormsey$Result[sample(thms, 5)] <- round(runif(5, 0.21, 1), 5)
+summary(gormsey$Result[gormsey$Measure == "THM"])
 
-turbidity <- which(gormsey$Measure == "Turbidity" & gormsey$Zone == "Strathmore")
-gormsey$Result[sample(turbidity, 7)] <- round(runif(7, 5, 9), 2)
+turbidity <- which(gormsey$Measure == "Turbidity" & gormsey$Town %in% c("Strathmore", "Pontybridge"))
+gormsey$Result[sample(turbidity, 12)] <- round(runif(12, 5, 9), 2)
 summary(gormsey$Result[gormsey$Measure == "Turbidity"])
 
-# Remove extreme
-gormsey$Result[gormsey$Result > 500] <- 5
-
-#write_csv(gormsey, "casestudy1/gormsey.csv")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Write to disk
+write_csv(gormsey, "casestudy1/gormsey.csv")
 
