@@ -1,46 +1,35 @@
-# Chapter 3: Load and explore data
+# Chapter 3: Exploring data
 
-# attach libraries
 library(tidyverse)
 
-# Load data
+# load data
 gormsey <- read_csv("casestudy1/gormsey.csv")
 
-# Whatis in the data?
-gormsey
-names(gormsey)
-glimpse(gormsey)
 View(gormsey)
 
-# How much data?
+gormsey
+
+names(gormsey)
+
 dim(gormsey)
+
 nrow(gormsey)
 ncol(gormsey)
 
-# Subsets of data
-gormsey[, 4:5]  ## Show all rows with column four and five
-gormsey[12:18, ] ## Show all variables for row 12 to 18
+# Subset
+gormsey[, 4:5]
+gormsey[12:18, ]
 
-gormsey[nrow(gormsey), ] ## Last row
+gormsey[nrow(gormsey), ]
 
-# Filter data
-gormsey[gormsey$Measure == "Turbidity", ]
+# Filter
+turbidity <- filter(gormsey, Measure == "Turbidity")
 
-gormsey$Measure == "Turbidity" # Results in vector of TRUE and FALSE
+nrow(filter(turbidity, Town != "Strathmore" & Result > 0.1))
 
-filter(gormsey, Measure == "Turbidity")
-filter(gormsey, Town == "Strathmore" & Measure == "Turbidity" & Result > 1)
+table(gormsey$Town)
 
-# How many turbidity results in all Towns, except Strathmore, are lower than 0.1 NTU?
-nrow(filter(gormsey, Town != "Strathmore" & Result < 0.1))
-
-# Counting data
 table(gormsey$Measure)
 
-turbidity <- filter(gormsey, Measure == "Turbidity")
-turbidity_count <- count(turbidity, Town)
+turbidity_count <- count(turbidity, Sample_Point)
 turbidity_count
-
-length(gormsey$Measure)
-unique(gormsey$Measure)
-

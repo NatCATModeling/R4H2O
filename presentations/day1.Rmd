@@ -21,7 +21,7 @@ event <- paste0("https://leanpub.com/c/R4H2O/c/", params$coupon)
 ```
 
 # My Data Science Evolution
-![](Images/data_science_evolution.png)
+![](images/data_science_evolution.png)
 
 # Day 1 Program
 :::::: {.columns}
@@ -39,7 +39,7 @@ event <- paste0("https://leanpub.com/c/R4H2O/c/", params$coupon)
 ::::::
 
 # Resources
-![Register to get access to the on-line syllabus: `r event`](../manuscript/resources/cover/r4h2o-logo.png)
+![Register to get access to the on-line syllabus: `r event`](../manuscript/resources/00_introduction/r4h2o_logo.jpg)
 
 # Principles of Data Science
 ![](../manuscript/resources/session0/StrategicDataScience.png)
@@ -92,7 +92,7 @@ reserve %>%
 
 * Sign-up at: [rstudio.cloud](https://rstudio.cloud/)
 * *New Project* > *New Project from Git Repo*
-![](Images/rstudio_cloud.png)
+![](images/rstudio_cloud.png)
 * Enter GitHub URL:
 [https://github.com/pprevos/r4h2o](https://github.com/pprevos/r4h2o)
 :::
@@ -136,7 +136,7 @@ abline(v = 0, col = "grey")
 * Google the problem
 :::
 ::: {.column width="50%"}
-![screenshot of help window](Images/help.png)
+![screenshot of help window](images/help.png)
 :::
 ::::::
 
@@ -230,7 +230,7 @@ library(tidyverse)
 Load the `casestudy1.R` script in the `casestudy1` folder.
 :::
 ::: {.column  width=40%}
-![](Images/tidyverse.png)
+![](images/tidyverse.png)
 :::
 ::::::
 
@@ -249,7 +249,7 @@ dataframe <- read_csv(filename)
 ```
 :::
 ::: {.column width=40%}
-![Data frame structure.](Images/dataframe.png)
+![Data frame structure.](images/dataframe.png)
 :::
 ::::::
 
@@ -285,7 +285,7 @@ group_by(df, var)
 ![Maximise the data to pixel ratio for aesthetic visualisations.](../manuscript/resources/session1/data-pixel-ratio.png)
 
 # Chart Chooser
-![Chart suggestions by Andrew Abela.](Images/chart_chooser.png)
+![Chart suggestions by Andrew Abela.](images/chart_chooser.png)
 
 # Use Colours Sparingly
 ![Types of colour pallets. Go to \url{colorbrewer2.org} for details.](../manuscript/resources/session4/ColorBrewer.png)
@@ -302,7 +302,7 @@ library(ggplot2)
 ```
 :::
 :::{.column}
-![](Images/ggplot2.png)
+![](images/ggplot2.png)
 :::
 ::::::
 
@@ -369,7 +369,7 @@ Share
 - Your own server
 :::
 :::{.column}
-![](Images/rstudio_connect.jpg)
+![](images/rstudio_connect.jpg)
 :::
 ::::::
 
@@ -408,10 +408,10 @@ To close this day, we will do a mini hackathon.
 # Further Study
 :::::: {.columns}
 ::: {.column}
-![tidyverse.org](Images/tidyverse.png)
+![tidyverse.org](images/tidyverse.png)
 :::
 ::: {.column}
-![[r4ds.had.co.nz](https://r4ds.had.co.nz/)](Images/r4ds.png)
+![[r4ds.had.co.nz](https://r4ds.had.co.nz/)](images/r4ds.png)
 :::
 ::::::
                     

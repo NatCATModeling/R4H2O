@@ -11,7 +11,7 @@ p <- 0.95
 par(mar=c(6, 5, 4, 1))
 plot(sample, type = "b", 
      main = "Percentile example", 
-     sub = "Excel (blue) and Weibull (red)", 
+     sub = "Excel and Weibull percentile method", 
      cex.axis = 2,
      cex.lab = 2,
      cex.main = 3,
@@ -30,6 +30,9 @@ x_excel <- (1 - (r_excel - floor(r_excel))) * sample[floor(r_excel)] + (r_excel 
 ## Visualise
 abline(v = r_weibull, col = "red", lwd = 3)
 abline(v = r_excel, col = "blue", lwd = 3)
+
+## Legend
+legend("topleft", legend = c("Excel", "Weibull"), fill = c("blue", "red"))
 
 ## R
 x_r <- sapply(1:9, function(t) quantile(sample, 0.95, type = t))

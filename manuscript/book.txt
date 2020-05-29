@@ -1,3 +1,9 @@
 r4h2o_00_introduction.md
 r4h2o_01_principles.md
 r4h2o_02_basics.md
+r4h2o_03_tidyverse.md
+r4h2o_04_statistics.md
+r4h2o_05_visualise.md
+r4h2o_06_data_products.md
+6_r4h2o_case_study_2.md
+7_r4h2o_case_study_3.md
