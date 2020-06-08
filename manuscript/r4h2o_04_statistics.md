@@ -200,7 +200,7 @@ d) 7.34
 That's it for this quiz. If you get stuck, you can find the answers in the `quiz_03.R` file in the `casestudy1` folder, or watch the video below.
 
 {width: 60%}
-![Answers to Quiz 3](https://youtu.be/oP3YnsB3sEs)
+![Answers to Quiz 3.](https://youtu.be/oP3YnsB3sEs)
 
 In the [next chapter](#ggplot), we will visualise the results of your analysis.
 {/quiz}

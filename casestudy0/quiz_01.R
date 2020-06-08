@@ -1,4 +1,5 @@
-## Channel flow
+## R4H2O: Data Science for Water Professionals
+## Quiz 1: Channel flow
 
 ## Constants
 Cd <- 0.6 # approximation

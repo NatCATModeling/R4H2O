@@ -1,3 +1,6 @@
+# Case Study 3
+
+This chapter is under review.
 
 ## Analysing data with the Tidyverse
 Before we get started with analysing water consumption, we return to case study 2 to explain some principles of analysing data with the *dplyr* library of the Tidyverse. We still have not answered the main question for this case study: What is the level of consumer involvement for tap water?

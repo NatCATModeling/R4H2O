@@ -1,4 +1,5 @@
-# Chapter 2: Introduction to the R Language 
+## R4H2O: Data Science for Water Professionals
+## Chapter 2: Introduction to the R Language 
 
 # basics
 3 - 3 * (6 + 2)

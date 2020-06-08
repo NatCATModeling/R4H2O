@@ -1,4 +1,5 @@
-# Chapter 3: Exploring data
+## R4H2O: Data Science for Water Professionals
+## Chapter 3: Exploring data
 
 library(tidyverse)
 
